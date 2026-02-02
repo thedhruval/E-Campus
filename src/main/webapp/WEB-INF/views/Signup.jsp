@@ -8,6 +8,14 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* Greyed-out placeholder styling for all inputs */
+        ::placeholder {
+            color: #6c757d;   /* Bootstrap's muted grey */
+            opacity: 1;       /* Ensure visibility */
+        }
+    </style>
 </head>
 <body class="bg-light">
 
@@ -53,18 +61,48 @@
                             </select>
                         </div>
 
+                        <!-- Birth Year -->
+                        <div class="mb-3">
+                            <label for="birthYear" class="form-label">Birth Year</label>
+                            <input type="number" class="form-control" id="birthYear" name="birthYear" 
+                                   placeholder="e.g. 1998" min="1900" max="2026" required>
+                        </div>
+                        
                         <!-- Contact Number -->
                         <div class="mb-3">
                             <label for="contactNumber" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contactNumber" name="contactNumber" 
+                            <input type="tel" class="form-control" id="contactNumber" name="contactNum" 
                                    placeholder="e.g. +91 9876543210" required>
                         </div>
 
-                        <!-- Profile Picture URL -->
+                        <!-- Profile Picture -->
                         <div class="mb-3">
-                            <label for="profilePicURL" class="form-label">Profile Picture URL</label>
-                            <input type="file" class="form-control" id="profilePicURL" name="profilePicURL" 
-                                   placeholder="https://example.com/yourphoto.jpg">
+                            <label for="profilePicURL" class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" id="profilePicURL" name="profilePicURL">
+                        </div>
+
+                        <!-- Qualification -->
+                        <div class="mb-3">
+                            <label for="qualification" class="form-label">Qualification</label>
+                            <input type="text" class="form-control" id="qualification" name="qualification">
+                        </div>
+
+                        <!-- City -->
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city">
+                        </div>
+
+                        <!-- State -->
+                        <div class="mb-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" name="state">
+                        </div>
+
+                        <!-- Country -->
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" name="country">
                         </div>
 
                         <!-- Submit Button -->

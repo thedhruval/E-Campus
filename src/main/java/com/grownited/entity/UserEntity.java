@@ -26,7 +26,7 @@ public class UserEntity {
 	private String contactNum;
 	private String profilePicURL;
 	private String otp;
-	private String active;
+	private Boolean active;
 	
 	
 	public Integer getUserId() {
@@ -77,10 +77,10 @@ public class UserEntity {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBirthYear() {
+	public Integer getBirthYear() {
 		return birthYear;
 	}
-	public void setBirthYear(String birthYear) {
+	public void setBirthYear(Integer birthYear) {
 		this.birthYear = birthYear;
 	}
 	public String getContactNum() {
@@ -101,12 +101,14 @@ public class UserEntity {
 	public void setOtp(String otp) {
 		this.otp = otp;
 	}
-	public String getActive() {
+	public Boolean getActive() {
 		return active;
 	}
-	public void setActive(String active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
+	
+	
 	
 	
 	
