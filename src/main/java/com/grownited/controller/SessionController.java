@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.grownited.entity.CourseEntity;
 import com.grownited.entity.UserDetailEntity;
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.CourseRepository;
 import com.grownited.repository.UserDetailRepository;
 import com.grownited.repository.UserRepository;
 
@@ -20,6 +22,9 @@ public class SessionController {
 	
 	@Autowired
 	UserDetailRepository userDetailRepository;
+	
+	@Autowired
+	CourseRepository courseRepository;
 	
 	@GetMapping("/signup")
 	public String openSignupPage() {
@@ -54,6 +59,24 @@ public class SessionController {
 		userDetailRepository.save(userDetailEntity);
 		
 		return "Login";
+	}
+	
+	
+	@PostMapping("/addcourse")
+	public String addcourse() {
+		
+		
+		
+		return "AddCourse";
+	}
+	
+	
+	@PostMapping("savecourse")
+	public String savecourse(CourseEntity courseEntity) {
+		
+		courseRepository.save(courseEntity);
+		
+		return "AddCourse";
 	}
 
 }
