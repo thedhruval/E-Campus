@@ -66,6 +66,10 @@
                             <!-- Submit -->
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-success">Save Course</button>
+                            
+                            <a href="admin-dashboard" class="btn btn-secondary">
+                                Cancel
+                            </a>
                             </div>
                         </form>
                     </div>

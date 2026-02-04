@@ -23,8 +23,7 @@ public class SessionController {
 	@Autowired
 	UserDetailRepository userDetailRepository;
 	
-	@Autowired
-	CourseRepository courseRepository;
+	
 	
 	@GetMapping("/signup")
 	public String openSignupPage() {
@@ -37,6 +36,8 @@ public class SessionController {
 		return "Login"; //jsp name
 		
 	}
+	
+	
 	
 	@GetMapping("/forgotpassword")
 	public String openForgotPasswordPage() {
@@ -62,21 +63,9 @@ public class SessionController {
 	}
 	
 	
-	@PostMapping("/addcourse")
-	public String addcourse() {
-		
-		
-		
-		return "AddCourse";
-	}
 	
 	
-	@PostMapping("savecourse")
-	public String savecourse(CourseEntity courseEntity) {
-		
-		courseRepository.save(courseEntity);
-		
-		return "AddCourse";
-	}
+	
+	
 
 }

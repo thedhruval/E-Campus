@@ -14,7 +14,7 @@
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
             <h3 class="text-center mb-4">Login</h3>
-            <form action="addcourse" method="post">
+            <form action="home" method="post">
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
