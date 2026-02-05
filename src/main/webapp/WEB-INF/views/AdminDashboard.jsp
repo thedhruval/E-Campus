@@ -47,7 +47,7 @@
         <h4 class="text-center mb-4">Admin Panel</h4>
         <ul class="nav nav-pills flex-column">
             <li class="nav-item"><a href="addcourse" class="nav-link">Add Course</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+            <li class="nav-item"><a href="addenrollment" class="nav-link">Add Enrollment</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
