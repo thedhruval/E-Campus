@@ -57,7 +57,4 @@ public class EnrollmentEntity {
 		this.remarks = remarks;
 	}
 	
-	
-		
-
 }

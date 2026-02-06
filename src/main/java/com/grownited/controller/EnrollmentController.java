@@ -14,14 +14,14 @@ public class EnrollmentController {
 	@Autowired
 	EnrollmentRepository enrollmentRepository;
 	
-	@GetMapping("/addenrollment")
-	public String AddEnrollment() {
+	@GetMapping("/newEnrollment")
+	public String newEnrollment() {
 		
-		return "AddEnrollment";
+		return "NewEnrollment";
 	}
 	
-	@PostMapping("/saveenrollment")
-	public String SaveEnrollment(EnrollmentEntity enrollmentEntity) {
+	@PostMapping("/saveEnrollment")
+	public String saveEnrollment(EnrollmentEntity enrollmentEntity) {
 		
 		enrollmentRepository.save(enrollmentEntity);
 		return "AdminDashboard";

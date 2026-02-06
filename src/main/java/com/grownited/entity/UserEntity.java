@@ -108,11 +108,4 @@ public class UserEntity {
 		this.active = active;
 	}
 	
-	
-	
-	
-	
-	
-	
-
 }

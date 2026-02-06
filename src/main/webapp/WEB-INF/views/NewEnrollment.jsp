@@ -19,7 +19,7 @@
                     <h4>Add Enrollment</h4>
                 </div>
                 <div class="card-body">
-                    <form action="saveenrollment" method="post">
+                    <form action="saveEnrollment" method="post">
                         
                         <!-- Date -->
                         <div class="mb-3">

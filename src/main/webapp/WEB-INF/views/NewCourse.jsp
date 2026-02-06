@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Form to add course -->
-                        <form action="savecourse" method="post">
+                        <form action="saveCourse" method="post">
                             <!-- Course Name -->
                             <div class="mb-3">
                                 <label for="courseName" class="form-label">Course Name</label>
