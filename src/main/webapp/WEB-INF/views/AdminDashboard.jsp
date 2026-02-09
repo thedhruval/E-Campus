@@ -49,7 +49,7 @@
             <li class="nav-item"><a href="newCourse" class="nav-link">New Course</a></li>
             <li class="nav-item"><a href="listCourse" class="nav-link">List Course</a></li>
             <li class="nav-item"><a href="newEnrollment" class="nav-link">New Enrollment</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Reports</a></li>
+            <li class="nav-item"><a href="listUser" class="nav-link">List User</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Settings</a></li>
             <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
         </ul>
