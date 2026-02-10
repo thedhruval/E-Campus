@@ -51,6 +51,13 @@ public class UserController {
 		}
 
 	}
+	
+	@GetMapping("deleteUser")
+	public String deleteUser(Integer userId, Model model) {
+		
+		userRepository.deleteById(userId);
+		return"redirect:/listUser";
+	}
 
 
 }
