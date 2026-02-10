@@ -13,7 +13,7 @@ public class EnrollmentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer enrollmentId;
-	private Integer userId;
+	private Integer userId;//fk
 	private String date;
 	private Float amount;
 	private String transactionId;

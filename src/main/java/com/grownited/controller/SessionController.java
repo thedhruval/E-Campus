@@ -54,7 +54,9 @@ public class SessionController {
 		
 		
 		userRepository.save(userEntity);
+		userDetailEntity.setUserId(userEntity.getUserId());
 		userDetailRepository.save(userDetailEntity);
+		
 		
 		return "Login";
 	}
