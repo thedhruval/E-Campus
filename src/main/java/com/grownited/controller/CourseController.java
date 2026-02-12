@@ -42,5 +42,12 @@ public class CourseController {
 		
 		return "ListCourse";
 	}
+	
+	@GetMapping("/deleteCourse")
+	public String deleteCourse(Integer courseId) {
+		
+		courseRepository.deleteById(courseId);
+		return "redirect:/listCourse";
+	}
 
 }
