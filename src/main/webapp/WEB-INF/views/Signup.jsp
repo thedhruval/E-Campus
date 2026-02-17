@@ -1,3 +1,102 @@
+<%--<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>E-Campus Signup</title>
+<!-- base:css -->
+<link rel="stylesheet"
+	href="../../vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="../../css/style.css">
+<!-- endinject -->
+<link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+	<div class="container-scroller d-flex">
+		<!-- partial:../../partials/_sidebar.html -->
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:../../partials/_navbar.html -->
+
+			<!-- partial -->
+			<div align = "center" class="main-panel">
+				<div align = "center" class="content-wrapper">
+					<div align = "center" class="row">
+						<div align = "center" class="col-md-8 grid-margin stretch-card">
+							<div align = "center" class="card">
+								<div align = "center" class="card-body">
+									<h4 align = "center" class="card-title">Default form</h4>
+									<p align = "center" class="card-description">Basic form layout</p>
+									<form  class="forms-sample">
+										<div align = "center" class="form-group">
+											<label for="exampleInputUsername1">Username</label> <input
+												type="text" class="form-control" id="exampleInputUsername1"
+												placeholder="Username">
+										</div>
+										<div align = "center" class="form-group">
+											<label for="exampleInputEmail1">Email address</label> <input
+												type="email" class="form-control" id="exampleInputEmail1"
+												placeholder="Email">
+										</div>
+										<div align = "center" class="form-group">
+											<label for="exampleInputPassword1">Password</label> <input
+												type="password" class="form-control"
+												id="exampleInputPassword1" placeholder="Password">
+										</div>
+										<div align = "center" class="form-group">
+											<label for="exampleInputConfirmPassword1">Confirm
+												Password</label> <input type="password" class="form-control"
+												id="exampleInputConfirmPassword1" placeholder="Password">
+										</div>
+										<div align = "center" class="form-check form-check-flat form-check-primary">
+											<label class="form-check-label"> <input
+												type="checkbox" class="form-check-input"> Remember
+												me
+											</label>
+										</div>
+										<button type="submit" class="btn btn-primary me-2">Submit</button>
+										<button class="btn btn-light">Cancel</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:../../partials/_footer.html -->
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- base:js -->
+	<script src="../../vendors/js/vendor.bundle.base.js"></script>
+	<!-- endinject -->
+	<!-- inject:js -->
+	<script src="../../js/off-canvas.js"></script>
+	<script src="../../js/hoverable-collapse.js"></script>
+	<script src="../../js/template.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<!-- End plugin js for this page -->
+	<!-- Custom js for this page-->
+	<script src="../../js/file-upload.js"></script>
+	<!-- End custom js for this page-->
+</body>
+
+</html>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -119,8 +218,8 @@
         </div>
     </div>
 </div>
-
 <!-- Bootstrap JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

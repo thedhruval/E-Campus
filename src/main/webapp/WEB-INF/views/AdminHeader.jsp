@@ -12,7 +12,7 @@
 				src="images/logo-mini.svg" alt="logo" /></a>
 		</div>
 		<h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome
-			back, Brandon Haynes</h4>
+			back, ${sessionScope.user.firstName} ${sessionScope.user.lastName}</h4>
 		<ul class="navbar-nav navbar-nav-right">
 			<li class="nav-item">
 				<h4 class="mb-0 font-weight-bold d-none d-xl-block">Mar 12,
@@ -127,14 +127,13 @@
 			<li class="nav-item nav-profile dropdown"><a
 				class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
 				id="profileDropdown"> <img src="images/faces/face5.jpg"
-					alt="profile" /> <span class="nav-profile-name">Eleanor
-						Richardson</span>
+					alt="profile" /> <span class="nav-profile-name">${sessionScope.user.firstName} ${sessionScope.user.lastName}</span>
 			</a>
 				<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 					aria-labelledby="profileDropdown">
 					<a class="dropdown-item"> <i
 						class="mdi mdi-settings text-primary"></i> Settings
-					</a> <a class="dropdown-item"> <i
+					</a> <a class="dropdown-item" href = "logout"> <i
 						class="mdi mdi-logout text-primary"></i> Logout
 					</a>
 				</div></li>
