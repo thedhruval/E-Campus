@@ -12,6 +12,7 @@ import com.grownited.entity.UserDetailEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.UserDetailRepository;
 import com.grownited.repository.UserRepository;
+import com.grownited.service.MailerService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -24,7 +25,8 @@ public class SessionController {
 	@Autowired
 	UserDetailRepository userDetailRepository;
 	
-	
+	@Autowired
+	MailerService mailerService;
 	
 	@GetMapping("/signup")
 	public String openSignupPage() {
@@ -61,6 +63,7 @@ public class SessionController {
 		userDetailEntity.setUserId(userEntity.getUserId());
 		userDetailRepository.save(userDetailEntity);
 		
+		mailerService.sendWelcomeMail(userEntity);
 		
 		return "Login";
 	}
