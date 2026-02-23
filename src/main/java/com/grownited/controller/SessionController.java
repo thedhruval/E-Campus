@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,9 @@ public class SessionController {
 	
 	@Autowired
 	MailerService mailerService;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/signup")
 	public String openSignupPage() {
@@ -58,12 +62,14 @@ public class SessionController {
 		userEntity.setActive(true);
 		userEntity.setCreatedAt(LocalDate.now());
 		
+		String encodedPassword = passwordEncoder.encode(userEntity.getPassword());
+		userEntity.setPassword(encodedPassword);
 		
 		userRepository.save(userEntity);
 		userDetailEntity.setUserId(userEntity.getUserId());
 		userDetailRepository.save(userDetailEntity);
 		
-		mailerService.sendWelcomeMail(userEntity);
+		//mailerService.sendWelcomeMail(userEntity);
 		
 		return "Login";
 	}
@@ -78,7 +84,9 @@ public class SessionController {
 			UserEntity dbUser = op.get();
 			session.setAttribute("user", dbUser);
 			
-			if(dbUser.getPassword().equals(password)) {
+			if (passwordEncoder.matches(password, dbUser.getPassword())) { //(password typer i.e. plaintext, password stored in database i.e. encrypted password)
+			
+			//if(dbUser.getPassword().equals(password)) {
 				
 				if(dbUser.getRole().equals("ADMIN")) {
 					return"redirect:/admin-dashboard";
