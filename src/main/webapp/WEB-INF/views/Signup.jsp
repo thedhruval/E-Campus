@@ -124,7 +124,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="text-center mb-4">Sign Up</h3>
-                    <form action="register" method="post">
+                    <form action="register" method="post" enctype = "multipart/form-data">
                         <!-- First Name -->
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First Name</label>
@@ -177,7 +177,7 @@
                         <!-- Profile Picture -->
                         <div class="mb-3">
                             <label for="profilePicURL" class="form-label">Profile Picture</label>
-                            <input type="file" class="form-control" id="profilePicURL" name="profilePicURL">
+                            <input type="file" class="form-control" id="profilePicURL" name="profilePic">
                         </div>
 
                         <!-- Qualification -->
