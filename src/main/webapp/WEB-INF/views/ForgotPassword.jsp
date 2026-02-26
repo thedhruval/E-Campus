@@ -17,7 +17,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h3 class="text-center mb-4">Forgot Password</h3>
-                    <form action="ForgotPasswordServlet" method="post">
+                    <form action="sendOtp" method="post">
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
@@ -32,6 +32,8 @@
                     </form>
                 </div>
             </div>
+            <br>
+            <span class="text-danger">${error}</span>
             <!-- Links outside card but just below -->
             <p class="text-center mt-3">
                 Remembered your Password? <a href="login">Back to Login</a>

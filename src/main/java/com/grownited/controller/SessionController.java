@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,6 +60,28 @@ public class SessionController {
 	public String openForgotPasswordPage() {
 		return "ForgotPassword"; //jsp name
 		
+	}
+	
+	@PostMapping("/sendOtp")
+	public String sendOtp(String email, Model model) {
+		
+		if(userRepository.findByEmail(email).isPresent()){
+			
+			//mailerService.sendOtpMail();
+			return "ChangePassword";
+		}
+		
+		else {
+			model.addAttribute("error", "email not found");
+			return"Forgotpassword";
+		}
+		
+	}
+	
+	@PostMapping("/changePassword")
+	public String changePassword(String email, String otp, String newPassword) {
+		
+		return "Login";
 	}
 	
 	@PostMapping("/register")

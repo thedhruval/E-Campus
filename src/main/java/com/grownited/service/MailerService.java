@@ -1,5 +1,6 @@
 package com.grownited.service;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,15 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.UserRepository;
 
 import jakarta.mail.internet.MimeMessage;
 
 @Service
 public class MailerService {
+	
+	@Autowired
+	UserRepository userRepository;
 	
 	@Autowired
 	JavaMailSender javaMailSender;
@@ -48,5 +53,23 @@ public class MailerService {
 		}
 		
 	}
+	
+	//public void sendOtpMail() {
+		
+		//MimeMessage message = javaMailSender.createMimeMessage();
+		
+		//Resource resource = resourceLoader.getResource("classpath:templates/OtpMail.html");
+		
+		//try {
+			//String html = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+			//MimeMessageHelper helper;
+			
+			//String   body = html.replace("${otp}", );
+		//} catch (IOException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		//}
+		
+	//}
 
 }
