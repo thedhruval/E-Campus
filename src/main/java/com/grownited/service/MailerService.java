@@ -54,22 +54,23 @@ public class MailerService {
 		
 	}
 	
-	//public void sendOtpMail() {
-		
-		//MimeMessage message = javaMailSender.createMimeMessage();
-		
-		//Resource resource = resourceLoader.getResource("classpath:templates/OtpMail.html");
-		
-		//try {
-			//String html = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-			//MimeMessageHelper helper;
-			
-			//String   body = html.replace("${otp}", );
-		//} catch (IOException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
-		
-	//}
+	public void sendOtpMail(UserEntity user, String otp) {
+	    MimeMessage message = javaMailSender.createMimeMessage();
+	    try {
+	        Resource resource = resourceLoader.getResource("classpath:templates/OtpMail.html");
+	        String html = new String(resource.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+	        String body = html.replace("${user.otp}", otp).replace("${user.firstName}", user.getFirstName()).replace("${companyName}", "E-Campus").replace("${year}", "2026");
+
+	        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+	        helper.setTo(user.getEmail());
+	        helper.setSubject("Your OTP for Password Reset");
+	        helper.setText(body, true);
+
+	        javaMailSender.send(message);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 
 }

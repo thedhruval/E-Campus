@@ -15,30 +15,46 @@ public class BatchEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer batchId;
-	private Integer courseId;
 	private String batchName;
+	private String batchStatus; // COMPLETED, HOLD, NOT_STARTED, ON_GOING
+	private String batchType; // CLUB, COMPLIMENTARY, GEN, GEN200, GEN40, ONE_TO_ONE
+	private String description;
 	private LocalDate startDate;
 	private LocalDate endDate;
 	private Long facultyId;
-	private Boolean active;
-	
+	private Long reporterId;
+	private String status; // COMPLETED, HOLD, NOT_STARTED, ON_GOING
+	private Integer courseId;
+	private Long subjectId;
 	public Integer getBatchId() {
 		return batchId;
 	}
 	public void setBatchId(Integer batchId) {
 		this.batchId = batchId;
 	}
-	public Integer getCourseId() {
-		return courseId;
-	}
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId;
-	}
 	public String getBatchName() {
 		return batchName;
 	}
 	public void setBatchName(String batchName) {
 		this.batchName = batchName;
+	}
+	public String getBatchStatus() {
+		return batchStatus;
+	}
+	public void setBatchStatus(String batchStatus) {
+		this.batchStatus = batchStatus;
+	}
+	public String getBatchType() {
+		return batchType;
+	}
+	public void setBatchType(String batchType) {
+		this.batchType = batchType;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public LocalDate getStartDate() {
 		return startDate;
@@ -58,11 +74,30 @@ public class BatchEntity {
 	public void setFacultyId(Long facultyId) {
 		this.facultyId = facultyId;
 	}
-	public Boolean getActive() {
-		return active;
+	public Long getReporterId() {
+		return reporterId;
 	}
-	public void setActive(Boolean active) {
-		this.active = active;
+	public void setReporterId(Long reporterId) {
+		this.reporterId = reporterId;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Integer getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
+	}
+	public Long getSubjectId() {
+		return subjectId;
+	}
+	public void setSubjectId(Long subjectId) {
+		this.subjectId = subjectId;
 	}
 	
+		
 }
