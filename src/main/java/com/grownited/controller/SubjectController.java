@@ -34,7 +34,14 @@ public class SubjectController {
 	public String saveSubject(SubjectEntity subjectEntity) {
 		
 		subjectRepository.save(subjectEntity);
-		return"admin-daashboard";
+		return"redirect:/listSubject";
+	}
+	
+	@GetMapping("/listSubject")
+	public String listSubject(Model model) {
+		List<SubjectEntity> subjectList = subjectRepository.findAll();
+		model.addAttribute("subjectList", subjectList);
+		return "ListSubject";
 	}
 
 }

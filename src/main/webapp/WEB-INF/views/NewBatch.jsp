@@ -95,7 +95,7 @@
                                         <select class="form-control" id="facultyId" name="facultyId" required>
                                             <option value="">-- Select Faculty --</option>
                                             <c:forEach var="faculty" items="${facultyList}">
-                                                <option value="${faculty.facultyId}">${faculty.facultyName}</option>
+                                                <option value="${faculty.userId}">${faculty.firstName} ${faculty.lastName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>

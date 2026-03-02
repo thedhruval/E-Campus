@@ -67,7 +67,7 @@
                 <span class="menu-title">Subject</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="batchMenu">
+            <div class="collapse" id="subjectMenu">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"><a class="nav-link" href="newSubject">New Subject</a></li>
                     <li class="nav-item"><a class="nav-link" href="listSubject">List Subject</a></li>

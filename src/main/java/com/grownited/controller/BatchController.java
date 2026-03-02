@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.BatchEntity;
 import com.grownited.entity.CourseEntity;
+import com.grownited.entity.SubjectEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.CourseRepository;
+import com.grownited.repository.SubjectRepository;
 import com.grownited.repository.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class BatchController {
@@ -23,6 +28,9 @@ public class BatchController {
 	
 	@Autowired
 	CourseRepository courseRepository;
+	
+	@Autowired
+	SubjectRepository subjectRepository;
 	
 	@Autowired
 	BatchRepository batchRepository;
@@ -36,6 +44,9 @@ public class BatchController {
 		List<UserEntity> facultyList = userRepository.findByRole("FACULTY");
 		model.addAttribute("facultyList", facultyList);
 		
+		List<SubjectEntity> subjectList = subjectRepository.findAll();
+		model.addAttribute("subjectList", subjectList);
+		
 		return("NewBatch");
 		
 	}
@@ -44,7 +55,23 @@ public class BatchController {
 	public String saveBatch(BatchEntity batchEntity) {
 		
 		batchRepository.save(batchEntity);
-		return "admin-dashboard";
+		return "redirect:/listBatch";
 	}
+	
+	@GetMapping("/listBatch")
+	public String listBatch(Model model) {
+		
+		List<BatchEntity> batchList = batchRepository.findAll();
+		model.addAttribute("batchList",batchList);
+		
+		return "ListBatch";
+	}
+	
+	@GetMapping("/deleteBatch")
+	public String deleteBatch(Integer batchId) {
+		batchRepository.deleteById(batchId);
+		return "redirect:/listBatch";
+	}
+	
 
 }

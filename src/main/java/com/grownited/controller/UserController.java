@@ -51,11 +51,11 @@ public class UserController {
 		userEntity.setPassword(encodedPassword);
 
 		try {
-			Map map = cloudinary.uploader().upload(profilePic.getBytes(), null);
-			System.out.println(map);
-			String profilePicURL = map.get("secure_url").toString();
-			System.out.println(profilePicURL);
-			userEntity.setProfilePicURL(profilePicURL);
+			if (profilePic != null && !profilePic.isEmpty()) {
+				Map map = cloudinary.uploader().upload(profilePic.getBytes(), null);
+				String profilePicURL = map.get("secure_url").toString();
+				userEntity.setProfilePicURL(profilePicURL);
+				}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
