@@ -8,9 +8,9 @@
 		</button>
 		<div class="navbar-brand-wrapper">
 			<a class="navbar-brand brand-logo" href="index.html"><img
-				src="images/logo.svg" alt="logo" /></a> <a
+				src="../images/logo.svg" alt="logo" /></a> <a
 				class="navbar-brand brand-logo-mini" href="index.html"><img
-				src="images/logo-mini.svg" alt="logo" /></a>
+				src="../images/logo-mini.svg" alt="logo" /></a>
 		</div>
 		<h4 class="font-weight-bold mb-0 d-none d-md-block mt-1">Welcome
 			back, ${sessionScope.user.firstName} ${sessionScope.user.lastName}</h4>
@@ -30,7 +30,7 @@
 					<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 					<a class="dropdown-item preview-item">
 						<div class="preview-thumbnail">
-							<img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+							<img src="../images/faces/face4.jpg" alt="image" class="profile-pic">
 						</div>
 						<div class="preview-item-content flex-grow">
 							<h6 class="preview-subject ellipsis font-weight-normal">David
@@ -40,7 +40,7 @@
 						</div>
 					</a> <a class="dropdown-item preview-item">
 						<div class="preview-thumbnail">
-							<img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+							<img src="../images/faces/face2.jpg" alt="image" class="profile-pic">
 						</div>
 						<div class="preview-item-content flex-grow">
 							<h6 class="preview-subject ellipsis font-weight-normal">Tim
@@ -50,7 +50,7 @@
 						</div>
 					</a> <a class="dropdown-item preview-item">
 						<div class="preview-thumbnail">
-							<img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+							<img src="../images/faces/face3.jpg" alt="image" class="profile-pic">
 						</div>
 						<div class="preview-item-content flex-grow">
 							<h6 class="preview-subject ellipsis font-weight-normal">
@@ -132,7 +132,7 @@
 						<img src="${sessionScope.user.profilePicURL}" alt="profile" />
 					</c:if> 
 					<c:if test="${empty sessionScope.user.profilePicURL}">
-						<img src="images/faces/dummy1.png" alt="profile" />
+						<img src="../images/faces/dummy1.png" alt="profile" />
 					</c:if> 
 					<span class="nav-profile-name">${sessionScope.user.firstName}
 						${sessionScope.user.lastName}</span>
