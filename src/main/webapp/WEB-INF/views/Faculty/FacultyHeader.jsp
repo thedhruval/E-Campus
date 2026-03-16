@@ -143,7 +143,7 @@
 					aria-labelledby="profileDropdown">
 					<a class="dropdown-item"> <i
 						class="mdi mdi-settings text-primary"></i> Settings
-					</a> <a class="dropdown-item" href="logout"> <i
+					</a> <a class="dropdown-item" href="/logout"> <i
 						class="mdi mdi-logout text-primary"></i> Logout
 					</a>
 				</div></li>
