@@ -119,5 +119,35 @@
 						href="listBatchSession">List Batch Session</a></li>
 				</ul>
 			</div></li>
+			
+			<!-- Exam -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#examMenu"
+			aria-expanded="false" aria-controls="examMenu"> <i
+				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Exam</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="examMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="newExam">New Exam</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listExam">List Exam</a></li>
+				</ul>
+			</div></li>
+			
+			<!-- Exam Result -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#examResultMenu"
+			aria-expanded="false" aria-controls="examResultMenu"> <i
+				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Exam Result</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="examResultMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="newExamResult">New Exam Result</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listExamResult">List Exam Result</a></li>
+				</ul>
+			</div></li>
 	</ul>
 </nav>

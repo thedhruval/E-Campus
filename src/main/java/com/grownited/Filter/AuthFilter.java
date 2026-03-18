@@ -41,7 +41,7 @@ public class AuthFilter implements Filter {
 		publicUrl.add("/register");
 		publicUrl.add("/logout");
 
-		if (publicUrl.contains(uri) || uri.contains("css") || uri.contains("docs") || uri.contains("fonts") || uri.contains("images") || uri.contains("js") || uri.contains("pages") || uri.contains("partials") || uri.contains("scss") || uri.contains("vendors")) {
+		if (publicUrl.contains(uri) || uri.contains("css") || uri.contains("ico") || uri.contains("docs") || uri.contains("fonts") || uri.contains("images") || uri.contains("js") || uri.contains("pages") || uri.contains("partials") || uri.contains("scss") || uri.contains("vendors")) {
 			// go ahead
 			chain.doFilter(request, response);
 		} else {
