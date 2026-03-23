@@ -20,26 +20,8 @@
 		</a>
 			<div class="collapse" id="courseMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="newCourse">New
-							Course</a></li>
 					<li class="nav-item"><a class="nav-link" href="listCourse">List
 							Course</a></li>
-				</ul>
-			</div></li>
-
-		<!-- Enrollment -->
-		<li class="nav-item"><a class="nav-link"
-			data-bs-toggle="collapse" href="#enrollmentMenu"
-			aria-expanded="false" aria-controls="enrollmentMenu"> <i
-				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Enrollment</span>
-				<i class="menu-arrow"></i>
-		</a>
-			<div class="collapse" id="enrollmentMenu">
-				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="newEnrollment">New
-							Enrollment</a></li>
-					<li class="nav-item"><a class="nav-link" href="listEnrollment">List
-							Enrollment</a></li>
 				</ul>
 			</div></li>
 
@@ -47,14 +29,14 @@
 		<li class="nav-item"><a class="nav-link"
 			data-bs-toggle="collapse" href="#userMenu" aria-expanded="false"
 			aria-controls="userMenu"> <i class="mdi mdi-palette menu-icon"></i>
-				<span class="menu-title">User</span> <i class="menu-arrow"></i>
+				<span class="menu-title">Student</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="userMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="newUser">New
-							User</a></li>
-					<li class="nav-item"><a class="nav-link" href="listUser">List
-							User</a></li>
+					<li class="nav-item"><a class="nav-link" href="/faculty/newStudent">New
+							Student</a></li>
+					<li class="nav-item"><a class="nav-link" href="/faculty/listStudent">List
+							Students</a></li>
 				</ul>
 			</div></li>
 
@@ -66,10 +48,8 @@
 		</a>
 			<div class="collapse" id="subjectMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="newSubject">New
-							Subject</a></li>
 					<li class="nav-item"><a class="nav-link" href="listSubject">List
-							Subject</a></li>
+							Subjects</a></li>
 				</ul>
 			</div></li>
 
@@ -84,7 +64,7 @@
 					<li class="nav-item"><a class="nav-link" href="newBatch">New
 							Batch</a></li>
 					<li class="nav-item"><a class="nav-link" href="listBatch">List
-							Batch</a></li>
+							Batches</a></li>
 				</ul>
 			</div></li>
 

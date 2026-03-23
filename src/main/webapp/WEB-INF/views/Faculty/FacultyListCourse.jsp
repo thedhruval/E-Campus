@@ -37,54 +37,44 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">List of all Users</h4>
+									<h4 class="card-title">List of all Courses</h4>
 									<div class="table-responsive">
 										<table
 											class="table table-striped table-hover table-bordered align-middle">
 											<thead class="table-dark">
 												<tr>
-													<th>First Name</th>
-													<th>Last Name</th>
-													<th>Email</th>
-													<th>Created At</th>
-													<th>Role</th>
-													<th>Gender</th>
-													<th>Birth Year</th>
-													<th>Contact Number</th>
-													<th>Profile Picture</th>
+													<th>Course Name</th>
 													<th>Active</th>
+													<th>Total Seats</th>
+													<th>Academic Cycle</th>
+													<th>Paid Seats</th>
+													<th>Development Cost</th>
 													<th>Actions</th>
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="user" items="${students}">
+												<c:forEach var="course" items="${courseList}">
 													<tr>
-														<td>${user.firstName}</td>
-														<td>${user.lastName}</td>
-														<td>${user.email}</td>
-														<td>${user.createdAt}</td>
-														<td>${user.role}</td>
-														<td>${user.gender}</td>
-														<td>${user.birthYear}</td>
-														<td>${user.contactNum}</td>
-														<td><img src="${user.profilePicURL}"
-															alt="Profile Pic" class="img-thumbnail"
-															style="width: 60px; height: 60px;"></td>
+														<td>${course.courseName}</td>
 														<td><c:choose>
-																<c:when test="${user.active}">
+																<c:when test="${course.active}">
 																	<span class="badge bg-success">Active</span>
 																</c:when>
 																<c:otherwise>
 																	<span class="badge bg-danger">Inactive</span>
 																</c:otherwise>
 															</c:choose></td>
-														<td><a href="viewUser?userId=${user.userId}"
+														<td>${course.totalSeats}</td>
+														<td>${course.academicCycle}</td>
+														<td>${course.paidSeats}</td>
+														<td>${course.developmentCost}</td>
+														<td><a href="viewCourse?courseId=${course.courseId}"
 															class="btn btn-info btn-sm">View</a> <a
-															href="editUser?userId=${user.userId}"
+															href="editCourse?courseId=${course.courseId}"
 															class="btn btn-warning btn-sm">Edit</a> <a
-															href="deleteUser?userId=${user.userId}"
+															href="deleteCourse?courseId=${course.courseId}"
 															class="btn btn-danger btn-sm"
-															onclick="return confirm('Are you sure you want to delete this user?');">
+															onclick="return confirm('Are you sure you want to delete this course?');">
 																Delete </a></td>
 													</tr>
 												</c:forEach>
@@ -119,7 +109,7 @@
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
 	<script src="../js/off-canvas.js"></script>
-	<script src="js/hoverable-collapse.js"></script>
+	<script src="../js/hoverable-collapse.js"></script>
 	<script src="../js/template.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
