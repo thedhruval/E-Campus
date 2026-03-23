@@ -5,27 +5,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard - Batch Times</title>
-    <!-- base:css -->
+    <title>Admin Dashboard - Batch Students</title>
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <!-- inject:css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
 <div class="container-scroller d-flex">
 
-    <!-- Sidebar -->
     <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
     <div class="container-fluid page-body-wrapper">
-        <!-- Header -->
         <jsp:include page="AdminHeader.jsp"></jsp:include>
 
         <div class="main-panel">
@@ -35,28 +29,29 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">List of Batch Times</h4>
+                                <h4 class="card-title">List of Batch Students</h4>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover table-bordered align-middle">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Time</th>
-                                                <th>Day</th>
-                                                <th>Batch</th>
+                                                <th>Batch Student ID</th>
+                                                <th>Student ID</th>
+                                                <th>Batch ID</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="batchTime" items="${batchTimes}">
+                                            <c:forEach var="bs" items="${batchStudentList}">
                                                 <tr>
-                                                    <td>${batchTime.time}</td>
-                                                    <td>${batchTime.day}</td>
-                                                    <td>${batchTime.batchId}</td>
+                                                    <td>${bs.batchStudentId}</td>
+                                                    <td>${bs.studentId}</td>
+                                                    <td>${bs.batchId}</td>
                                                     <td>
-                                                        <a href="viewBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-info btn-sm">View</a>
-                                                        <a href="editBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-warning btn-sm">Edit</a>
-                                                        <a href="deleteBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-danger btn-sm"
-                                                           onclick="return confirm('Are you sure you want to delete this batch time?');">Delete</a>
+                                                        <a href="deleteBatchStudent?batchStudentId=${bs.batchStudentId}" 
+                                                           class="btn btn-danger btn-sm"
+                                                           onclick="return confirm('Are you sure you want to remove this student from batch?');">
+                                                           Delete
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
@@ -70,21 +65,16 @@
                 </div>
 
             </div>
-            <!-- content-wrapper ends -->
 
-            <!-- Footer -->
             <jsp:include page="AdminFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>
 
-<!-- base:js -->
 <script src="vendors/js/vendor.bundle.base.js"></script>
-<!-- inject:js -->
 <script src="js/off-canvas.js"></script>
 <script src="js/hoverable-collapse.js"></script>
 <script src="js/template.js"></script>
-<!-- Custom js -->
 <script src="js/dashboard.js"></script>
 </body>
 </html>

@@ -9,32 +9,56 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.ExamEntity;
+import com.grownited.entity.BatchEntity;
+import com.grownited.entity.SubjectEntity;
+import com.grownited.entity.CourseEntity;
 import com.grownited.repository.ExamRepository;
+import com.grownited.repository.BatchRepository;
+import com.grownited.repository.SubjectRepository;
+import com.grownited.repository.CourseRepository;
 
 @Controller
 public class ExamController {
-	
-	@Autowired
-	ExamRepository examRepository;
 
-	@GetMapping("/newExam")
-	public String newExam() {
+    @Autowired
+    ExamRepository examRepository;
 
-		return "NewExam";
-	}
+    @Autowired
+    BatchRepository batchRepository;
 
-	@GetMapping("/listExam")
-	public String listExam(Model model) {
-		
-		List<ExamEntity> ExamResult = examRepository.findAll();
-		model.addAttribute("ExamResult", ExamResult);
-		return "ListExam";
-	}
+    @Autowired
+    SubjectRepository subjectRepository;
 
-	@PostMapping("/saveExam")
-	public String saveExam(ExamEntity examEntity) {
-		examRepository.save(examEntity);
-		return "redirect:/listExam";
-	}
+    @Autowired
+    CourseRepository courseRepository;
 
+    // Show form to create new Exam
+    @GetMapping("/newExam")
+    public String newExam(Model model) {
+        List<BatchEntity> batchList = batchRepository.findAll();
+        model.addAttribute("batchList", batchList);
+
+        List<SubjectEntity> subjectList = subjectRepository.findAll();
+        model.addAttribute("subjectList", subjectList);
+
+        List<CourseEntity> courseList = courseRepository.findAll();
+        model.addAttribute("courseList", courseList);
+
+        return "NewExam";
+    }
+
+    // Show list of Exams
+    @GetMapping("/listExam")
+    public String listExam(Model model) {
+        List<ExamEntity> exams = examRepository.findAll();
+        model.addAttribute("exams", exams);
+        return "ListExam";
+    }
+
+    // Save Exam
+    @PostMapping("/saveExam")
+    public String saveExam(ExamEntity examEntity) {
+        examRepository.save(examEntity);
+        return "redirect:/listExam";
+    }
 }

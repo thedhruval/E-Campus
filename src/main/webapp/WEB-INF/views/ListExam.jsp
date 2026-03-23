@@ -1,12 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard - Exams</title>
+    <!-- base:css -->
+    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
+<div class="container-scroller d-flex">
 
+    <!-- Sidebar -->
+    <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+
+    <div class="container-fluid page-body-wrapper">
+        <!-- Header -->
+        <jsp:include page="AdminHeader.jsp"></jsp:include>
+
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">List of Exams</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover table-bordered align-middle">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Exam Title</th>
+                                                <th>Description</th>
+                                                <th>Exam Date</th>
+                                                <th>Created At</th>
+                                                <th>Difficulty</th>
+                                                <th>Total Marks</th>
+                                                <th>Batch</th>
+                                                <th>Subject</th>
+                                                <th>Course</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="exam" items="${exams}">
+                                                <tr>
+                                                    <td>${exam.examTitle}</td>
+                                                    <td>${exam.examDescription}</td>
+                                                    <td>${exam.examDate}</td>
+                                                    <td>${exam.createdAt}</td>
+                                                    <td>
+                                                        <c:choose>
+                                                            <c:when test="${exam.examDifficulty == 'EASY'}">
+                                                                <span class="badge bg-success">EASY</span>
+                                                            </c:when>
+                                                            <c:when test="${exam.examDifficulty == 'MEDIUM'}">
+                                                                <span class="badge bg-info">MEDIUM</span>
+                                                            </c:when>
+                                                            <c:when test="${exam.examDifficulty == 'HARD'}">
+                                                                <span class="badge bg-warning">HARD</span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="badge bg-danger">VERY HARD</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </td>
+                                                    <td>${exam.totalMarks}</td>
+                                                    <td>${exam.batchId}</td>
+                                                    <td>${exam.subjectId}</td>
+                                                    <td>${exam.courseId}</td>
+                                                    <td>
+                                                        <a href="viewExam?examId=${exam.examId}" class="btn btn-info btn-sm">View</a>
+                                                        <a href="editExam?examId=${exam.examId}" class="btn btn-warning btn-sm">Edit</a>
+                                                        <a href="deleteExam?examId=${exam.examId}" class="btn btn-danger btn-sm"
+                                                           onclick="return confirm('Are you sure you want to delete this exam?');">Delete</a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- content-wrapper ends -->
+
+            <!-- Footer -->
+            <jsp:include page="AdminFooter.jsp"></jsp:include>
+        </div>
+    </div>
+</div>
+
+<!-- base:js -->
+<script src="vendors/js/vendor.bundle.base.js"></script>
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/hoverable-collapse.js"></script>
+<script src="js/template.js"></script>
+<!-- Custom js -->
+<script src="js/dashboard.js"></script>
 </body>
 </html>

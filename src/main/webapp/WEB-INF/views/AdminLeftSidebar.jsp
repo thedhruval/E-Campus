@@ -87,6 +87,21 @@
 							Batch</a></li>
 				</ul>
 			</div></li>
+			
+		<!-- Batch -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#batchStudentMenu" aria-expanded="false"
+			aria-controls="batchStudentMenu"> <i class="mdi mdi-palette menu-icon"></i>
+				<span class="menu-title">Batch Student</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="batchStudentMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link" href="newBatchStudent">New
+							Batch Student</a></li>
+					<li class="nav-item"><a class="nav-link" href="listBatchStudent">List
+							Batch Student</a></li>
+				</ul>
+			</div></li>
 
 		<!-- Batch Time -->
 		<li class="nav-item"><a class="nav-link"

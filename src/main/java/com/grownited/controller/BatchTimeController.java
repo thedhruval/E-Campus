@@ -10,40 +10,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.BatchEntity;
 import com.grownited.entity.BatchTimeEntity;
-import com.grownited.entity.UserEntity;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.BatchTimeRepository;
 
-import jakarta.servlet.http.HttpSession;
-
 @Controller
 public class BatchTimeController {
-	
-	@Autowired
-	BatchRepository batchRepository;
-	
-	@Autowired
-	BatchTimeRepository batchTimeRepository;
-	
-	@GetMapping("/newBatchTime")
-	public String newBatchTime(Model model, HttpSession session) {
-		UserEntity loggedinUser = (UserEntity) session.getAttribute("user");
-		List<BatchEntity> batches = batchRepository.findAll();
-		model.addAttribute("batches", batches);
-		return "NewBatchTime";
-	}
-	
-	@GetMapping("/listBatchTime")
-	public String ListBatchTime() {
-		
-		return "ListBatchTime";
-	}
-	
-	@PostMapping("/saveBatchTime")
-	public String saveBatchTime(BatchTimeEntity batchTimeEntity) {
-		
-		batchTimeRepository.save(batchTimeEntity);
-		return "redirect:/listBatchTime";
-	}
 
+    @Autowired
+    BatchTimeRepository batchTimeRepository;
+
+    @Autowired
+    BatchRepository batchRepository;
+
+    // Show form to create new Batch Time
+    @GetMapping("/newBatchTime")
+    public String newBatchTime(Model model) {
+        List<BatchEntity> batches = batchRepository.findAll();
+        model.addAttribute("batches", batches);
+        return "NewBatchTime";
+    }
+
+    // Show list of Batch Times
+    @GetMapping("/listBatchTime")
+    public String listBatchTime(Model model) {
+        List<BatchTimeEntity> batchTimes = batchTimeRepository.findAll();
+        model.addAttribute("batchTimes", batchTimes);
+        return "ListBatchTime";
+    }
+
+    // Save Batch Time
+    @PostMapping("/saveBatchTime")
+    public String saveBatchTime(BatchTimeEntity batchTimeEntity) {
+        batchTimeRepository.save(batchTimeEntity);
+        return "redirect:/listBatchTime";
+    }
 }
