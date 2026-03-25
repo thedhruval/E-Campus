@@ -73,8 +73,10 @@
            onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
         <a href="listUser" class="btn btn-secondary">Back to List</a>
     </div>
+    
 </div>
 
+<jsp:include page="AdminFooter.jsp"></jsp:include>
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

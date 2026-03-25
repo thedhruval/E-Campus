@@ -147,13 +147,6 @@
     </div>
 </div>
 
-<!-- base:js -->
-<script src="vendors/js/vendor.bundle.base.js"></script>
-<!-- inject:js -->
-<script src="js/off-canvas.js"></script>
-<script src="js/hoverable-collapse.js"></script>
-<script src="js/template.js"></script>
-<!-- Custom js -->
-<script src="js/dashboard.js"></script>
+
 </body>
 </html>
