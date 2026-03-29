@@ -38,7 +38,7 @@ public class BatchStudentController {
 
 		batchStudentRepository.save(batchStudentEntity);
 
-		return "AdminDashboard";
+		return "redirect:/listBatchStudent";
 	}
 
 	@GetMapping("/listBatchStudent")

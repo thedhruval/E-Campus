@@ -29,6 +29,48 @@
 			<!-- partial:./partials/_navbar.html -->
 			<jsp:include page="AdminHeader.jsp"></jsp:include>
 			<!-- partial -->
+			<div class="row mt-4">
+				<!-- Students Card -->
+				<div class="col-md-3 stretch-card">
+					<div class="card bg-primary text-white">
+						<div class="card-body text-center">
+							<h5 class="card-title">Registered Students</h5>
+							<h2 class="font-weight-bold mb-0">${studentCount}</h2>
+						</div>
+					</div>
+				</div>
+
+				<!-- Faculties Card -->
+				<div class="col-md-3 stretch-card">
+					<div class="card bg-success text-white">
+						<div class="card-body text-center">
+							<h5 class="card-title">Faculties</h5>
+							<h2 class="font-weight-bold mb-0">${facultyCount}</h2>
+						</div>
+					</div>
+				</div>
+
+				<!-- Admins Card -->
+				<div class="col-md-3 stretch-card">
+					<div class="card bg-danger text-white">
+						<div class="card-body text-center">
+							<h5 class="card-title">Admins</h5>
+							<h2 class="font-weight-bold mb-0">${adminCount}</h2>
+						</div>
+					</div>
+				</div>
+
+				<!-- Courses Card -->
+				<div class="col-md-3 stretch-card">
+					<div class="card bg-info text-white">
+						<div class="card-body text-center">
+							<h5 class="card-title">Courses</h5>
+							<h2 class="font-weight-bold mb-0">${courseCount}</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
@@ -319,7 +361,7 @@
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:./partials/_footer.html -->
-				<jsp:include page = "AdminFooter.jsp"></jsp:include>
+				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
 			</div>
 			<!-- main-panel ends -->
@@ -328,7 +370,7 @@
 	</div>
 	<!-- container-scroller -->
 
-	
+
 </body>
 
 </html>

@@ -30,7 +30,7 @@ public class EnrollmentController {
 	public String saveEnrollment(EnrollmentEntity enrollmentEntity) {
 		
 		enrollmentRepository.save(enrollmentEntity);
-		return "AdminDashboard";
+		return "redirect:/listEnrollment";
 	}
 	
 	@GetMapping("/listEnrollment")

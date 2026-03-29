@@ -30,7 +30,7 @@ public class CourseController {
 		
 		courseRepository.save(courseEntity);
 		
-		return "AdminDashboard";
+		return "redirect:/listCourse";
 	}
 	
 	@GetMapping("/listCourse")
