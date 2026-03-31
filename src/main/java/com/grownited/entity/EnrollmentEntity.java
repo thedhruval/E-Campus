@@ -18,6 +18,7 @@ public class EnrollmentEntity {
 	private Float amount;
 	private String transactionId;
 	private String remarks;
+	private String courseId;
 	
 	
 	public Integer getEnrollmentId() {
@@ -56,5 +57,12 @@ public class EnrollmentEntity {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
+	public String getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+	
 	
 }
