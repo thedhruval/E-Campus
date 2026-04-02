@@ -5,17 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Admin Dashboard - New Batch Session</title>
-    <!-- base:css -->
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <!-- inject:css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
@@ -96,20 +92,20 @@
                                         <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
                                     </div>
 
-                                    <!-- Attendance Fields -->
+                                    <!-- Attendance Fields (optional now) -->
                                     <div class="form-group">
                                         <label for="presentOffline">Present Offline</label>
-                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline" required>
+                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="presentOnline">Present Online</label>
-                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline" required>
+                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="absent">Absent</label>
-                                        <input type="number" class="form-control" id="absent" name="absent" required>
+                                        <input type="number" class="form-control" id="absent" name="absent">
                                     </div>
 
                                     <div class="form-group">
@@ -132,10 +128,10 @@
                                         <input type="number" class="form-control" id="na" name="na">
                                     </div>
 
-                                    <!-- Total Students -->
+                                    <!-- Total Students (optional) -->
                                     <div class="form-group">
                                         <label for="totalStudent">Total Students</label>
-                                        <input type="number" class="form-control" id="totalStudent" name="totalStudent" required>
+                                        <input type="number" class="form-control" id="totalStudent" name="totalStudent">
                                     </div>
 
                                     <!-- Status -->
@@ -143,6 +139,7 @@
                                         <label for="status">Status</label>
                                         <select class="form-control" id="status" name="status" required>
                                             <option value="">-- Select Status --</option>
+                                            <option value="UPCOMMING">UPCOMMING</option>
                                             <option value="COMPLETED">COMPLETED</option>
                                             <option value="ONGOING">ONGOING</option>
                                             <option value="CANCELLED">CANCELLED</option>
@@ -181,14 +178,11 @@
                 </div>
 
             </div>
-            <!-- content-wrapper ends -->
 
             <!-- Footer -->
             <jsp:include page="AdminFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

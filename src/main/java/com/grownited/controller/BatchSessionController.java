@@ -42,7 +42,7 @@ public class BatchSessionController {
 	@GetMapping("/listBatchSession")
 	public String ListBatchSession(Model model) {
 		List<BatchSessionEntity> batchSession = batchSessionRepository.findAll();
-        model.addAttribute("batchTimes", batchSession);
+        model.addAttribute("batchSessions", batchSession);
         return "ListBatchSession";
 	}
 	
