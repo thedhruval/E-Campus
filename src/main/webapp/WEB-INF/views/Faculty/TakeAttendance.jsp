@@ -9,7 +9,8 @@
         <div>
             <span>Student ID: ${student.studentId}</span>
             <select name="student_${student.studentId}">
-                <option value="PRESENT">Present</option>
+                <option value="PRESENT_OFFLINE">Present (Offline)</option>
+                <option value="PRESENT_ONLINE">Present (Online)</option>
                 <option value="ABSENT">Absent</option>
                 <option value="LATE">Late</option>
                 <option value="EXCUSED">Excused</option>

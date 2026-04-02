@@ -72,6 +72,21 @@ public class FacultyAttendanceController {
     public String saveAttendance(@RequestParam("sessionId") Integer sessionId,
                                  @RequestParam Map<String, String> allParams) {
 
+        BatchSessionEntity currentSession = batchSessionRepository.findById(sessionId).orElse(null);
+        if (currentSession == null) {
+            return "redirect:/faculty/faculty-dashboard";
+        }
+
+        // Counters
+        int totalStudents = 0;
+        int presentOfflineCount = 0;
+        int presentOnlineCount = 0;
+        int absentCount = 0;
+        int lateCount = 0;
+        int excusedCount = 0;
+        int naCount = 0;
+
+        // Save each student's attendance
         for (String key : allParams.keySet()) {
             if (key.startsWith("student_")) {
                 Integer studentId = Integer.parseInt(key.replace("student_", ""));
@@ -83,15 +98,43 @@ public class FacultyAttendanceController {
                 attendance.setStatus(status);
 
                 attendanceRepository.save(attendance);
+
+                // Count totals
+                totalStudents++;
+                switch (status) {
+                    case "PRESENT_OFFLINE":
+                        presentOfflineCount++;
+                        break;
+                    case "PRESENT_ONLINE":
+                        presentOnlineCount++;
+                        break;
+                    case "ABSENT":
+                        absentCount++;
+                        break;
+                    case "LATE":
+                        lateCount++;
+                        break;
+                    case "EXCUSED":
+                        excusedCount++;
+                        break;
+                    case "NA":
+                        naCount++;
+                        break;
+                }
             }
         }
 
-        // After saving attendance, mark session as COMPLETED
-        BatchSessionEntity session = batchSessionRepository.findById(sessionId).orElse(null);
-        if (session != null) {
-            session.setStatus("COMPLETED");
-            batchSessionRepository.save(session);
-        }
+        // Update session totals and mark as COMPLETED
+        currentSession.setTotalStudent(totalStudents);
+        currentSession.setPresentOffline(presentOfflineCount);
+        currentSession.setPresentOnline(presentOnlineCount);
+        currentSession.setAbsent(absentCount);
+        currentSession.setLate(lateCount);
+        currentSession.setExcuse(excusedCount);
+        currentSession.setNa(naCount);
+        currentSession.setStatus("COMPLETED");
+
+        batchSessionRepository.save(currentSession);
 
         return "redirect:/faculty/faculty-dashboard";
     }

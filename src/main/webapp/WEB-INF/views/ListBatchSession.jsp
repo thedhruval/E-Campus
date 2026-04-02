@@ -78,6 +78,9 @@
                                                             <c:when test="${session.status == 'ONGOING'}">
                                                                 <span class="badge bg-info">ONGOING</span>
                                                             </c:when>
+                                                            <c:when test="${session.status == 'UPCOMMING'}">
+                                                                <span class="badge bg-info">UPCOMMING</span>
+                                                            </c:when>
                                                             <c:otherwise>
                                                                 <span class="badge bg-danger">CANCELLED</span>
                                                             </c:otherwise>
