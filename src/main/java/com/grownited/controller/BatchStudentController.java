@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +56,32 @@ public class BatchStudentController {
 	public String deleteBatchStudent(Integer batchStudentId) {
 
 		batchStudentRepository.deleteById(batchStudentId);
+		return "redirect:/listBatchStudent";
+	}
+
+	@GetMapping("/editBatchStudent")
+	public String editBatchStudent(Integer batchStudentId, Model model) {
+		Optional<BatchStudentEntity> batchStudent = batchStudentRepository.findById(batchStudentId);
+		if (batchStudent.isPresent()) {
+			model.addAttribute("batchStudent", batchStudent.get());
+			model.addAttribute("studentList", userRepository.findAll());
+			model.addAttribute("batchList", batchRepository.findAll());
+			return "EditBatchStudent";
+		} else {
+			return "redirect:/listBatchStudent";
+		}
+	}
+
+	@PostMapping("/updateBatchStudent")
+	public String updateBatchStudent(BatchStudentEntity newBatchStudentEntity) {
+		Optional<BatchStudentEntity> batchStudent = batchStudentRepository
+				.findById(newBatchStudentEntity.getBatchStudentId());
+		if (batchStudent.isPresent()) {
+			BatchStudentEntity dbBatchStudent = batchStudent.get();
+			dbBatchStudent.setStudentId(newBatchStudentEntity.getStudentId());
+			dbBatchStudent.setBatchId(newBatchStudentEntity.getBatchId());
+			batchStudentRepository.save(dbBatchStudent);
+		}
 		return "redirect:/listBatchStudent";
 	}
 

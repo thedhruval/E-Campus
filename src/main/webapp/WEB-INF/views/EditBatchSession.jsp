@@ -1,31 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard - New Batch Session</title>
-    <!-- base:css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard - Edit Batch Session</title>
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <!-- inject:css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
 <div class="container-scroller d-flex">
 
-    <!-- Sidebar -->
     <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
     <div class="container-fluid page-body-wrapper">
-        <!-- Header -->
         <jsp:include page="AdminHeader.jsp"></jsp:include>
 
         <div class="main-panel">
@@ -35,117 +27,104 @@
                     <div class="col-lg-10 grid-margin stretch-card mx-auto">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Create New Batch Session</h4>
+                                <h4 class="card-title">Edit Batch Session</h4>
 
-                                <form action="saveBatchSession" method="post" class="forms-sample">
+                                <form action="updateBatchSession" method="post" class="forms-sample">
 
                                     <!-- Session Date -->
                                     <div class="form-group">
                                         <label for="sessionDate">Session Date</label>
-                                        <input type="date" class="form-control" id="sessionDate" name="sessionDate" required>
+                                        <input type="date" class="form-control" id="sessionDate" 
+                                               name="sessionDate" value="${batchSession.sessionDate}" required>
                                     </div>
 
                                     <!-- Session Day -->
                                     <div class="form-group">
                                         <label for="sessionDay">Session Day</label>
                                         <select class="form-control" id="sessionDay" name="sessionDay" required>
-                                            <option value="">-- Select Day --</option>
-                                            <option value="MONDAY">Monday</option>
-                                            <option value="TUESDAY">Tuesday</option>
-                                            <option value="WEDNESDAY">Wednesday</option>
-                                            <option value="THURSDAY">Thursday</option>
-                                            <option value="FRIDAY">Friday</option>
-                                            <option value="SATURDAY">Saturday</option>
-                                            <option value="SUNDAY">Sunday</option>
+                                            <option value="MONDAY" ${batchSession.sessionDay == 'MONDAY' ? 'selected' : ''}>Monday</option>
+                                            <option value="TUESDAY" ${batchSession.sessionDay == 'TUESDAY' ? 'selected' : ''}>Tuesday</option>
+                                            <option value="WEDNESDAY" ${batchSession.sessionDay == 'WEDNESDAY' ? 'selected' : ''}>Wednesday</option>
+                                            <option value="THURSDAY" ${batchSession.sessionDay == 'THURSDAY' ? 'selected' : ''}>Thursday</option>
+                                            <option value="FRIDAY" ${batchSession.sessionDay == 'FRIDAY' ? 'selected' : ''}>Friday</option>
+                                            <option value="SATURDAY" ${batchSession.sessionDay == 'SATURDAY' ? 'selected' : ''}>Saturday</option>
+                                            <option value="SUNDAY" ${batchSession.sessionDay == 'SUNDAY' ? 'selected' : ''}>Sunday</option>
                                         </select>
                                     </div>
 
-                                    <!-- Session Start Time -->
+                                    <!-- Start/End Time -->
                                     <div class="form-group">
                                         <label for="sessionStartTime">Session Start Time</label>
-                                        <input type="time" class="form-control" id="sessionStartTime" name="sessionStartTime" required>
+                                        <input type="time" class="form-control" id="sessionStartTime" 
+                                               name="sessionStartTime" value="${batchSession.sessionStartTime}" required>
                                     </div>
-
-                                    <!-- Session End Time -->
                                     <div class="form-group">
                                         <label for="sessionEndTime">Session End Time</label>
-                                        <input type="time" class="form-control" id="sessionEndTime" name="sessionEndTime" required>
+                                        <input type="time" class="form-control" id="sessionEndTime" 
+                                               name="sessionEndTime" value="${batchSession.sessionEndTime}" required>
                                     </div>
 
-                                    <!-- Session Duration -->
+                                    <!-- Duration -->
                                     <div class="form-group">
                                         <label for="sessionDurationMinutes">Session Duration (Minutes)</label>
-                                        <input type="number" class="form-control" id="sessionDurationMinutes" name="sessionDurationMinutes" required>
+                                        <input type="number" class="form-control" id="sessionDurationMinutes" 
+                                               name="sessionDurationMinutes" value="${batchSession.sessionDurationMinutes}" required>
                                     </div>
 
                                     <!-- Reporting DateTime -->
                                     <div class="form-group">
                                         <label for="reportingDateTime">Reporting Date & Time</label>
-                                        <input type="datetime-local" class="form-control" id="reportingDateTime" name="reportingDateTime" required>
+                                        <input type="datetime-local" class="form-control" id="reportingDateTime" 
+                                               name="reportingDateTime" value="${batchSession.reportingDateTime}" required>
                                     </div>
 
                                     <!-- Topic -->
                                     <div class="form-group">
                                         <label for="topic">Topic</label>
-                                        <input type="text" class="form-control" id="topic" name="topic" required>
+                                        <input type="text" class="form-control" id="topic" 
+                                               name="topic" value="${batchSession.topic}" required>
                                     </div>
 
                                     <!-- Notes -->
                                     <div class="form-group">
                                         <label for="notes">Notes</label>
-                                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                                        <textarea class="form-control" id="notes" name="notes" rows="3">${batchSession.notes}</textarea>
                                     </div>
 
-                                    <!-- Attendance Fields -->
-                                    <div class="form-group">
-                                        <label for="presentOffline">Present Offline</label>
-                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline" required>
+                                    <!-- Attendance -->
+                                    <div class="form-group"><label for="presentOffline">Present Offline</label>
+                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline" value="${batchSession.presentOffline}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="presentOnline">Present Online</label>
-                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline" required>
+                                    <div class="form-group"><label for="presentOnline">Present Online</label>
+                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline" value="${batchSession.presentOnline}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="absent">Absent</label>
-                                        <input type="number" class="form-control" id="absent" name="absent" required>
+                                    <div class="form-group"><label for="absent">Absent</label>
+                                        <input type="number" class="form-control" id="absent" name="absent" value="${batchSession.absent}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="late">Late</label>
-                                        <input type="number" class="form-control" id="late" name="late">
+                                    <div class="form-group"><label for="late">Late</label>
+                                        <input type="number" class="form-control" id="late" name="late" value="${batchSession.late}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="excuse">Excuse</label>
-                                        <input type="number" class="form-control" id="excuse" name="excuse">
+                                    <div class="form-group"><label for="excuse">Excuse</label>
+                                        <input type="number" class="form-control" id="excuse" name="excuse" value="${batchSession.excuse}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="cancel">Cancel</label>
-                                        <input type="number" class="form-control" id="cancel" name="cancel">
+                                    <div class="form-group"><label for="cancel">Cancel</label>
+                                        <input type="number" class="form-control" id="cancel" name="cancel" value="${batchSession.cancel}">
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="na">N/A</label>
-                                        <input type="number" class="form-control" id="na" name="na">
+                                    <div class="form-group"><label for="na">N/A</label>
+                                        <input type="number" class="form-control" id="na" name="na" value="${batchSession.na}">
                                     </div>
-
-                                    <!-- Total Students -->
-                                    <div class="form-group">
-                                        <label for="totalStudent">Total Students</label>
-                                        <input type="number" class="form-control" id="totalStudent" name="totalStudent" required>
+                                    <div class="form-group"><label for="totalStudent">Total Students</label>
+                                        <input type="number" class="form-control" id="totalStudent" name="totalStudent" value="${batchSession.totalStudent}">
                                     </div>
 
                                     <!-- Status -->
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select class="form-control" id="status" name="status" required>
-                                            <option value="">-- Select Status --</option>
-                                            <option value="COMPLETED">COMPLETED</option>
-                                            <option value="ONGOING">ONGOING</option>
-                                            <option value="CANCELLED">CANCELLED</option>
+                                            <option value="UPCOMMING" ${batchSession.status == 'UPCOMMING' ? 'selected' : ''}>UPCOMMING</option>
+                                            <option value="COMPLETED" ${batchSession.status == 'COMPLETED' ? 'selected' : ''}>COMPLETED</option>
+                                            <option value="ONGOING" ${batchSession.status == 'ONGOING' ? 'selected' : ''}>ONGOING</option>
+                                            <option value="CANCELLED" ${batchSession.status == 'CANCELLED' ? 'selected' : ''}>CANCELLED</option>
                                         </select>
                                     </div>
 
@@ -153,9 +132,8 @@
                                     <div class="form-group">
                                         <label for="batchId">Batch</label>
                                         <select class="form-control" id="batchId" name="batchId" required>
-                                            <option value="">-- Select Batch --</option>
                                             <c:forEach var="batch" items="${batchList}">
-                                                <option value="${batch.batchId}">${batch.batchName}</option>
+                                                <option value="${batch.batchId}" ${batchSession.batchId == batch.batchId ? 'selected' : ''}>${batch.batchName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -164,16 +142,18 @@
                                     <div class="form-group">
                                         <label for="facultyId">Faculty</label>
                                         <select class="form-control" id="facultyId" name="facultyId" required>
-                                            <option value="">-- Select Faculty --</option>
                                             <c:forEach var="faculty" items="${facultyList}">
-                                                <option value="${faculty.userId}">${faculty.firstName} ${faculty.lastName}</option>
+                                                <option value="${faculty.userId}" ${batchSession.facultyId == faculty.userId ? 'selected' : ''}>${faculty.firstName} ${faculty.lastName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
+                                    <!-- Hidden ID -->
+                                    <input type="hidden" name="batchSessionId" value="${batchSession.batchSessionId}">
+
                                     <!-- Buttons -->
-                                    <button type="submit" class="btn btn-primary me-2">Save</button>
-                                    <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                                    <button type="submit" class="btn btn-primary me-2">Update Batch Session</button>
+                                    <a href="listBatchSession" class="btn btn-secondary">Cancel</a>
                                 </form>
                             </div>
                         </div>
@@ -181,14 +161,10 @@
                 </div>
 
             </div>
-            <!-- content-wrapper ends -->
 
-            <!-- Footer -->
             <jsp:include page="AdminFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

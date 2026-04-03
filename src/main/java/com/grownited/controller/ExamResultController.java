@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,4 +54,35 @@ public class ExamResultController {
         examResultRepository.save(examResultEntity);
         return "redirect:/listExamResult";
     }
+    
+    @GetMapping("/editExamResult")
+    public String editExamResult(Long examResultId, Model model) {
+        Optional<ExamResultEntity> examResult = examResultRepository.findById(examResultId);
+        if (examResult.isPresent()) {
+            model.addAttribute("examResult", examResult.get());
+            model.addAttribute("examList", examRepository.findAll());
+            model.addAttribute("studentList", userRepository.findByRole("STUDENT"));
+            return "EditExamResult";
+        } else {
+            return "redirect:/listExamResult"; // fallback if not found
+        }
+    }
+
+    @PostMapping("/updateExamResult")
+    public String updateExamResult(ExamResultEntity newExamResultEntity) {
+        Optional<ExamResultEntity> examResult = examResultRepository.findById(newExamResultEntity.getExamResultId());
+        if (examResult.isPresent()) {
+            ExamResultEntity dbExamResult = examResult.get();
+
+            dbExamResult.setExamId(newExamResultEntity.getExamId());
+            dbExamResult.setStudentId(newExamResultEntity.getStudentId());
+            dbExamResult.setObtainMarks(newExamResultEntity.getObtainMarks());
+            dbExamResult.setPercentage(newExamResultEntity.getPercentage());
+            dbExamResult.setResultStatus(newExamResultEntity.getResultStatus());
+
+            examResultRepository.save(dbExamResult);
+        }
+        return "redirect:/listExamResult";
+    }
+
 }

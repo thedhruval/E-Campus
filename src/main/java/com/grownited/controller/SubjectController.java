@@ -1,6 +1,7 @@
 package com.grownited.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,5 +44,34 @@ public class SubjectController {
 		model.addAttribute("subjectList", subjectList);
 		return "ListSubject";
 	}
+	
+	@GetMapping("/editSubject")
+	public String editSubject(Long subjectId, Model model) {
+	    Optional<SubjectEntity> subject = subjectRepository.findById(subjectId);
+	    if (subject.isPresent()) {
+	        model.addAttribute("subject", subject.get());
+	        model.addAttribute("courseList", courseRepository.findAll());
+	        return "EditSubject";
+	    } else {
+	        return "redirect:/listSubject"; // fallback if not found
+	    }
+	}
+
+	@PostMapping("/updateSubject")
+	public String updateSubject(SubjectEntity newSubjectEntity) {
+	    Optional<SubjectEntity> subject = subjectRepository.findById(newSubjectEntity.getSubjectId());
+	    if (subject.isPresent()) {
+	        SubjectEntity dbSubject = subject.get();
+
+	        dbSubject.setSubjectName(newSubjectEntity.getSubjectName());
+	        dbSubject.setSemester(newSubjectEntity.getSemester());
+	        dbSubject.setCourseId(newSubjectEntity.getCourseId());
+
+	        subjectRepository.save(dbSubject);
+	    }
+	    return "redirect:/listSubject";
+	}
+
+
 
 }

@@ -104,5 +104,55 @@ public class UserController {
 		userRepository.deleteById(userId);
 		return "redirect:/listUser";
 	}
+	
+	@GetMapping("/editUser")
+	public String editUser(Integer userId, Model model) {
+	    Optional<UserEntity> user = userRepository.findById(userId);
+	    Optional<UserDetailEntity> userDetail = userDetailRepository.findByUserId(userId);
+
+	    if (user.isPresent()) {
+	        model.addAttribute("user", user.get());
+	        userDetail.ifPresent(detail -> model.addAttribute("userDetail", detail));
+	        return "EditUser";
+	    } else {
+	        return "redirect:/listUser"; // fallback if not found
+	    }
+	}
+
+	@PostMapping("/updateUser")
+	public String updateUser(UserEntity newUserEntity, UserDetailEntity newUserDetailEntity) {
+	    Optional<UserEntity> user = userRepository.findById(newUserEntity.getUserId());
+	    if (user.isPresent()) {
+	        UserEntity dbUser = user.get();
+
+	        // Update role
+	        dbUser.setRole(newUserEntity.getRole());
+
+	        // Update active status (true/false from dropdown)
+	        dbUser.setActive(newUserEntity.getActive());
+
+	        // Profile picture handling via dropdown
+	        if ("NULL".equals(newUserEntity.getProfilePicURL())) {
+	            dbUser.setProfilePicURL(null);
+	        } else {
+	            dbUser.setProfilePicURL(newUserEntity.getProfilePicURL());
+	        }
+
+	        userRepository.save(dbUser);
+
+	        // Update UserDetailEntity
+	        Optional<UserDetailEntity> userDetail = userDetailRepository.findByUserId(dbUser.getUserId());
+	        if (userDetail.isPresent()) {
+	            UserDetailEntity dbDetail = userDetail.get();
+	            dbDetail.setQualification(newUserDetailEntity.getQualification());
+	            userDetailRepository.save(dbDetail);
+	        } else {
+	            // If no detail exists, create new
+	            newUserDetailEntity.setUserId(dbUser.getUserId());
+	            userDetailRepository.save(newUserDetailEntity);
+	        }
+	    }
+	    return "redirect:/listUser";
+	}
 
 }

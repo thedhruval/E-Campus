@@ -73,5 +73,41 @@ public class BatchController {
 		return "redirect:/listBatch";
 	}
 	
+	@GetMapping("/editBatch")
+	public String editBatch(Integer batchId, Model model) {
+	    Optional<BatchEntity> batch = batchRepository.findById(batchId);
+	    if (batch.isPresent()) {
+	        model.addAttribute("batch", batch.get());
+	        model.addAttribute("facultyList", userRepository.findAll());
+	        model.addAttribute("courseList", courseRepository.findAll());
+	        model.addAttribute("subjectList", subjectRepository.findAll());
+	        return "EditBatch";
+	    } else {
+	        return "redirect:/listBatch";
+	    }
+	}
+
+	@PostMapping("/updateBatch")
+	public String updateBatch(BatchEntity newBatchEntity) {
+	    Optional<BatchEntity> batch = batchRepository.findById(newBatchEntity.getBatchId());
+	    if (batch.isPresent()) {
+	        BatchEntity dbBatch = batch.get();
+	        dbBatch.setBatchName(newBatchEntity.getBatchName());
+	        dbBatch.setBatchStatus(newBatchEntity.getBatchStatus());
+	        dbBatch.setBatchType(newBatchEntity.getBatchType());
+	        dbBatch.setDescription(newBatchEntity.getDescription());
+	        dbBatch.setStartDate(newBatchEntity.getStartDate());
+	        dbBatch.setEndDate(newBatchEntity.getEndDate());
+	        dbBatch.setFacultyId(newBatchEntity.getFacultyId());
+	        dbBatch.setReporterId(newBatchEntity.getReporterId());
+	        dbBatch.setStatus(newBatchEntity.getStatus());
+	        dbBatch.setCourseId(newBatchEntity.getCourseId());
+	        dbBatch.setSubjectId(newBatchEntity.getSubjectId());
+
+	        batchRepository.save(dbBatch);
+	    }
+	    return "redirect:/listBatch";
+	}
+
 
 }

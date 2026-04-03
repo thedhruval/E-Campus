@@ -45,7 +45,7 @@
                                         <select class="form-control" id="examId" name="examId" required>
                                             <option value="">-- Select Exam --</option>
                                             <c:forEach var="exam" items="${examList}">
-                                                <option value="${exam.examId}">${exam.examName}</option>
+                                                <option value="${exam.examId}">${exam.examTitle}</option>
                                             </c:forEach>
                                         </select>
                                     </div>

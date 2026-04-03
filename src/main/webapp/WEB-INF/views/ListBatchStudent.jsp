@@ -47,6 +47,7 @@
                                                     <td>${bs.studentId}</td>
                                                     <td>${bs.batchId}</td>
                                                     <td>
+                                                    	<a href="editBatchStudent?batchStudentId=${bs.batchStudentId}" class="btn btn-warning btn-sm">Edit</a>
                                                         <a href="deleteBatchStudent?batchStudentId=${bs.batchStudentId}" 
                                                            class="btn btn-danger btn-sm"
                                                            onclick="return confirm('Are you sure you want to remove this student from batch?');">

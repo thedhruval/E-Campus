@@ -1,14 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard - New Batch Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard - Edit Batch Student</title>
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="css/style.css">
@@ -26,38 +24,45 @@
             <div class="content-wrapper">
 
                 <div class="row">
-                    <div class="col-lg-8 grid-margin stretch-card">
+                    <div class="col-lg-8 grid-margin stretch-card mx-auto">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Add Student to Batch</h4>
+                                <h4 class="card-title">Edit Batch Student</h4>
 
-                                <form action="saveBatchStudent" method="post">
+                                <form action="updateBatchStudent" method="post" class="forms-sample">
+
+                                    <!-- Student -->
                                     <div class="form-group">
                                         <label for="studentId">Select Student</label>
                                         <select class="form-control" id="studentId" name="studentId" required>
-                                            <option value="">-- Select Student --</option>
                                             <c:forEach var="student" items="${studentList}">
-                                                <option value="${student.userId}">
+                                                <option value="${student.userId}" 
+                                                    ${batchStudent.studentId == student.userId ? 'selected' : ''}>
                                                     ${student.firstName} ${student.lastName} (${student.email})
                                                 </option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
+                                    <!-- Batch -->
                                     <div class="form-group">
                                         <label for="batchId">Select Batch</label>
                                         <select class="form-control" id="batchId" name="batchId" required>
-                                            <option value="">-- Select Batch --</option>
                                             <c:forEach var="batch" items="${batchList}">
-                                                <option value="${batch.batchId}">
+                                                <option value="${batch.batchId}" 
+                                                    ${batchStudent.batchId == batch.batchId ? 'selected' : ''}>
                                                     ${batch.batchName}
                                                 </option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                    <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                                    <!-- Hidden ID -->
+                                    <input type="hidden" name="batchStudentId" value="${batchStudent.batchStudentId}">
+
+                                    <!-- Buttons -->
+                                    <button type="submit" class="btn btn-primary me-2">Update Batch Student</button>
+                                    <a href="listBatchStudent" class="btn btn-secondary">Cancel</a>
                                 </form>
                             </div>
                         </div>
@@ -70,7 +75,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

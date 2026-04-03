@@ -1,31 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard - New Exam</title>
-    <!-- base:css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin Dashboard - Edit Exam</title>
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <!-- inject:css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
 </head>
 <body>
 <div class="container-scroller d-flex">
 
-    <!-- Sidebar -->
     <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
 
     <div class="container-fluid page-body-wrapper">
-        <!-- Header -->
         <jsp:include page="AdminHeader.jsp"></jsp:include>
 
         <div class="main-panel">
@@ -35,59 +27,55 @@
                     <div class="col-lg-8 grid-margin stretch-card mx-auto">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Create New Exam</h4>
+                                <h4 class="card-title">Edit Exam</h4>
 
-                                <form action="saveExam" method="post" class="forms-sample">
+                                <form action="updateExam" method="post" class="forms-sample">
 
                                     <!-- Exam Title -->
                                     <div class="form-group">
                                         <label for="examTitle">Exam Title</label>
-                                        <input type="text" class="form-control" id="examTitle" name="examTitle" required>
+                                        <input type="text" class="form-control" id="examTitle" 
+                                               name="examTitle" value="${exam.examTitle}" required>
                                     </div>
 
                                     <!-- Exam Description -->
                                     <div class="form-group">
                                         <label for="examDescription">Exam Description</label>
-                                        <textarea class="form-control" id="examDescription" name="examDescription" rows="3"></textarea>
+                                        <textarea class="form-control" id="examDescription" 
+                                                  name="examDescription" rows="3">${exam.examDescription}</textarea>
                                     </div>
 
                                     <!-- Exam Date -->
                                     <div class="form-group">
                                         <label for="examDate">Exam Date</label>
-                                        <input type="date" class="form-control" id="examDate" name="examDate" required>
-                                    </div>
-
-                                    <!-- Created At -->
-                                    <div class="form-group">
-                                        <label for="createdAt">Created At</label>
-                                        <input type="datetime-local" class="form-control" id="createdAt" name="createdAt" required>
+                                        <input type="date" class="form-control" id="examDate" 
+                                               name="examDate" value="${exam.examDate}" required>
                                     </div>
 
                                     <!-- Exam Difficulty -->
                                     <div class="form-group">
                                         <label for="examDifficulty">Exam Difficulty</label>
                                         <select class="form-control" id="examDifficulty" name="examDifficulty" required>
-                                            <option value="">-- Select Difficulty --</option>
-                                            <option value="EASY">EASY</option>
-                                            <option value="MEDIUM">MEDIUM</option>
-                                            <option value="HARD">HARD</option>
-                                            <option value="VERY_HARD">VERY_HARD</option>
+                                            <option value="EASY" ${exam.examDifficulty == 'EASY' ? 'selected' : ''}>EASY</option>
+                                            <option value="MEDIUM" ${exam.examDifficulty == 'MEDIUM' ? 'selected' : ''}>MEDIUM</option>
+                                            <option value="HARD" ${exam.examDifficulty == 'HARD' ? 'selected' : ''}>HARD</option>
+                                            <option value="VERY_HARD" ${exam.examDifficulty == 'VERY_HARD' ? 'selected' : ''}>VERY HARD</option>
                                         </select>
                                     </div>
 
                                     <!-- Total Marks -->
                                     <div class="form-group">
                                         <label for="totalMarks">Total Marks</label>
-                                        <input type="number" step="0.01" class="form-control" id="totalMarks" name="totalMarks" required>
+                                        <input type="number" step="0.01" class="form-control" id="totalMarks" 
+                                               name="totalMarks" value="${exam.totalMarks}" required>
                                     </div>
 
                                     <!-- Batch -->
                                     <div class="form-group">
                                         <label for="batchId">Batch</label>
                                         <select class="form-control" id="batchId" name="batchId" required>
-                                            <option value="">-- Select Batch --</option>
                                             <c:forEach var="batch" items="${batchList}">
-                                                <option value="${batch.batchId}">${batch.batchName}</option>
+                                                <option value="${batch.batchId}" ${exam.batchId == batch.batchId ? 'selected' : ''}>${batch.batchName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -96,9 +84,8 @@
                                     <div class="form-group">
                                         <label for="subjectId">Subject</label>
                                         <select class="form-control" id="subjectId" name="subjectId" required>
-                                            <option value="">-- Select Subject --</option>
                                             <c:forEach var="subject" items="${subjectList}">
-                                                <option value="${subject.subjectId}">${subject.subjectName}</option>
+                                                <option value="${subject.subjectId}" ${exam.subjectId == subject.subjectId ? 'selected' : ''}>${subject.subjectName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -107,16 +94,18 @@
                                     <div class="form-group">
                                         <label for="courseId">Course</label>
                                         <select class="form-control" id="courseId" name="courseId" required>
-                                            <option value="">-- Select Course --</option>
                                             <c:forEach var="course" items="${courseList}">
-                                                <option value="${course.courseId}">${course.courseName}</option>
+                                                <option value="${course.courseId}" ${exam.courseId == course.courseId ? 'selected' : ''}>${course.courseName}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
 
+                                    <!-- Hidden Exam ID -->
+                                    <input type="hidden" name="examId" value="${exam.examId}">
+
                                     <!-- Buttons -->
-                                    <button type="submit" class="btn btn-primary me-2">Save</button>
-                                    <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                                    <button type="submit" class="btn btn-primary me-2">Update Exam</button>
+                                    <a href="listExam" class="btn btn-secondary">Cancel</a>
                                 </form>
                             </div>
                         </div>
@@ -124,14 +113,10 @@
                 </div>
 
             </div>
-            <!-- content-wrapper ends -->
 
-            <!-- Footer -->
             <jsp:include page="AdminFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>
