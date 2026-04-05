@@ -77,7 +77,7 @@
                                     <!-- Reporting DateTime -->
                                     <div class="form-group">
                                         <label for="reportingDateTime">Reporting Date & Time</label>
-                                        <input type="datetime-local" class="form-control" id="reportingDateTime" name="reportingDateTime" required>
+                                        <input type="datetime-local" class="form-control" id="reportingDateTime" name="reportingDateTime">
                                     </div>
 
                                     <!-- Topic -->
