@@ -19,6 +19,7 @@ public class CourseEntity {
 	private String academicCycle;
 	private Integer paidSeats;
 	private Integer developmentCost;
+	private Integer amountPerStudent;
 	
 	
 	public Integer getCourseId() {
@@ -65,6 +66,12 @@ public class CourseEntity {
 	}
 	public void setDevelopmentCost(Integer developmentCost) {
 		this.developmentCost = developmentCost;
+	}
+	public Integer getAmountPerStudent() {
+		return amountPerStudent;
+	}
+	public void setAmountPerStudent(Integer amountPerStudent) {
+		this.amountPerStudent = amountPerStudent;
 	}
 	
 	

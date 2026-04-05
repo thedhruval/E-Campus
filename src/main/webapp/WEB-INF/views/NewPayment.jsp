@@ -1,40 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>New Payment</title>
 </head>
 <body>
-    <h2>Enter Payment Details</h2>
+    <h2>Course Payment</h2>
+    <form action="${pageContext.request.contextPath}/charge" method="post">
+        <!-- Hidden courseId only -->
+        <input type="hidden" name="courseId" value="${courseId}" />
 
-    <form action="charge" method="post">
-        <table>
-            <tr>
-                <td>Card Number:</td>
-                <td><input type="text" name="cardNumber" maxlength="16" required /></td>
-            </tr>
-            <tr>
-                <td>Expiration Date (MM/YY):</td>
-                <td><input type="text" name="expDate" maxlength="5" required /></td>
-            </tr>
-            <tr>
-                <td>CVV:</td>
-                <td><input type="text" name="cvv" maxlength="4" required /></td>
-            </tr>
-            <tr>
-                <td>Amount:</td>
-                <td><input type="text" name="amount" required /></td>
-            </tr>
-            <tr>
-                <td>Cardholder Name:</td>
-                <td><input type="text" name="cardHolder" required /></td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input type="submit" value="Pay Now" />
-                </td>
-            </tr>
-        </table>
+        <!-- Credit card details -->
+        <label for="creditCardNumber">Credit Card Number:</label>
+        <input type="text" id="creditCardNumber" name="creditCardNumber" required /><br/>
+
+        <label for="expirationDate">Expiration Date (MMYY):</label>
+        <input type="text" id="expirationDate" name="expirationDate" required /><br/>
+
+        <button type="submit">Pay Now</button>
     </form>
 </body>
 </html>

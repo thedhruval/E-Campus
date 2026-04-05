@@ -151,7 +151,7 @@ public class SessionController {
 				} else if (dbUser.getRole().equals("FACULTY")) {
 					return "redirect:/faculty/faculty-dashboard";
 				} else if (dbUser.getRole().equals("STUDENT")) {
-					return "redirect:/student-dashboard";
+					return "redirect:/student/student-dashboard";
 				}
 			}
 		}

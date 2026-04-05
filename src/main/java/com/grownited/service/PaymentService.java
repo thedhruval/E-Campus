@@ -2,58 +2,79 @@ package com.grownited.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.grownited.entity.EnrollmentEntity;
+import com.grownited.entity.UserEntity;
+import com.grownited.repository.EnrollmentRepository;
+
+import jakarta.servlet.http.HttpSession;
 import net.authorize.Environment;
 import net.authorize.api.contract.v1.*;
 import net.authorize.api.controller.CreateTransactionController;
 import net.authorize.api.controller.base.ApiOperationBase;
 
+@Service
 public class PaymentService {
-   
-    public static ANetApiResponse run(String apiLoginId, String transactionKey, Double amount) {
 
-        // Set the request to operate in either the sandbox or production environment
+    @Autowired
+    private EnrollmentRepository enrollmentRepository;
+
+    private static String apiLoginId = "63xNws2TKv";
+    private static String transactionKey = "7U5x647RWdvy9Ax6";
+
+    public ANetApiResponse run(Integer courseId, Double amount,
+                               String creditCardNumber, String expirationDate,
+                               HttpSession session) {
+
+        UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
+        Integer userId = loggedInUser.getUserId();
+        String email = loggedInUser.getEmail();
+
+        // Set environment
         ApiOperationBase.setEnvironment(Environment.SANDBOX);
 
-        // Create object with merchant authentication details
-        MerchantAuthenticationType merchantAuthenticationType  = new MerchantAuthenticationType() ;
+        // Merchant authentication
+        MerchantAuthenticationType merchantAuthenticationType = new MerchantAuthenticationType();
         merchantAuthenticationType.setName(apiLoginId);
         merchantAuthenticationType.setTransactionKey(transactionKey);
 
-        // Populate the payment data
-        PaymentType paymentType = new PaymentType();
+        // Payment data
         CreditCardType creditCard = new CreditCardType();
-        creditCard.setCardNumber("4242424242424242");
-        creditCard.setExpirationDate("0835");
+        creditCard.setCardNumber(creditCardNumber);
+        creditCard.setExpirationDate(expirationDate);
+
+        PaymentType paymentType = new PaymentType();
         paymentType.setCreditCard(creditCard);
 
-        // Set email address (optional)
+        // Customer data
         CustomerDataType customer = new CustomerDataType();
-        customer.setEmail("test@test.test");
+        customer.setEmail(email);
 
-        // Create the payment transaction object
+        // Transaction request
         TransactionRequestType txnRequest = new TransactionRequestType();
         txnRequest.setTransactionType(TransactionTypeEnum.AUTH_CAPTURE_TRANSACTION.value());
         txnRequest.setPayment(paymentType);
         txnRequest.setCustomer(customer);
         txnRequest.setAmount(new BigDecimal(amount).setScale(2, RoundingMode.CEILING));
 
-        // Create the API request and set the parameters for this specific request
+        // API request
         CreateTransactionRequest apiRequest = new CreateTransactionRequest();
         apiRequest.setMerchantAuthentication(merchantAuthenticationType);
         apiRequest.setTransactionRequest(txnRequest);
 
-        // Call the controller
+        // Execute
         CreateTransactionController controller = new CreateTransactionController(apiRequest);
         controller.execute();
 
-        // Get the response
-        CreateTransactionResponse response = new CreateTransactionResponse();
-        response = controller.getApiResponse();
-        
-        // Parse the response to determine results
-        if (response!=null) {
-            // If API Response is OK, go ahead and check the transaction response
+        CreateTransactionResponse response = controller.getApiResponse();
+
+        // Parse response
+        if (response != null) {
             if (response.getMessages().getResultCode() == MessageTypeEnum.OK) {
                 TransactionResponse result = response.getTransactionResponse();
                 if (result.getMessages() != null) {
@@ -62,32 +83,52 @@ public class PaymentService {
                     System.out.println("Message Code: " + result.getMessages().getMessage().get(0).getCode());
                     System.out.println("Description: " + result.getMessages().getMessage().get(0).getDescription());
                     System.out.println("Auth Code: " + result.getAuthCode());
+
+                    // Save enrollment
+                    EnrollmentEntity enrollmentEntity = new EnrollmentEntity();
+                    enrollmentEntity.setAmount(amount.floatValue());
+                    enrollmentEntity.setCourseId(courseId);
+                    enrollmentEntity.setUserId(userId);
+                    enrollmentEntity.setTransactionId(result.getTransId());
+                    enrollmentEntity.setAuthCode(result.getAuthCode());
+                    enrollmentEntity.setEmail(email);
+                    enrollmentEntity.setDate(LocalDate.now());
+
+                    enrollmentRepository.save(enrollmentEntity);
+
                 } else {
-                    System.out.println("Failed Transaction.");
+                    System.out.println("Failed Transaction: No messages.");
                     if (response.getTransactionResponse().getErrors() != null) {
-                        System.out.println("Error Code: " + response.getTransactionResponse().getErrors().getError().get(0).getErrorCode());
-                        System.out.println("Error message: " + response.getTransactionResponse().getErrors().getError().get(0).getErrorText());
+                        System.out.println("Error Code: " +
+                                response.getTransactionResponse().getErrors().getError().get(0).getErrorCode());
+                        System.out.println("Error message: " +
+                                response.getTransactionResponse().getErrors().getError().get(0).getErrorText());
                     }
                 }
             } else {
                 System.out.println("Failed Transaction.");
-                if (response.getTransactionResponse() != null && response.getTransactionResponse().getErrors() != null) {
-                    System.out.println("Error Code: " + response.getTransactionResponse().getErrors().getError().get(0).getErrorCode());
-                    System.out.println("Error message: " + response.getTransactionResponse().getErrors().getError().get(0).getErrorText());
+                if (response.getTransactionResponse() != null &&
+                    response.getTransactionResponse().getErrors() != null) {
+                    System.out.println("Error Code: " +
+                            response.getTransactionResponse().getErrors().getError().get(0).getErrorCode());
+                    System.out.println("Error message: " +
+                            response.getTransactionResponse().getErrors().getError().get(0).getErrorText());
                 } else {
                     System.out.println("Error Code: " + response.getMessages().getMessage().get(0).getCode());
                     System.out.println("Error message: " + response.getMessages().getMessage().get(0).getText());
                 }
             }
         } else {
-            // Display the error code and message when response is null 
+            // Response is null
             ANetApiResponse errorResponse = controller.getErrorResponse();
             System.out.println("Failed to get response");
-            if (!errorResponse.getMessages().getMessage().isEmpty()) {
-                System.out.println("Error: "+errorResponse.getMessages().getMessage().get(0).getCode()+" \n"+ errorResponse.getMessages().getMessage().get(0).getText());
+            if (errorResponse != null && !errorResponse.getMessages().getMessage().isEmpty()) {
+                System.out.println("Error: " +
+                        errorResponse.getMessages().getMessage().get(0).getCode() + " \n" +
+                        errorResponse.getMessages().getMessage().get(0).getText());
             }
         }
-        
+
         return response;
     }
 }

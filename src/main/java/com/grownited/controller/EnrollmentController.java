@@ -40,12 +40,5 @@ public class EnrollmentController {
 		model.addAttribute("enrollmentList", enrollmentList);
 		return "ListEnrollment";
 	}
-	
-	@GetMapping("/deleteEnrollment")
-	public String deleteEnrollment(Integer enrollmentId) {
-		
-		enrollmentRepository.deleteById(enrollmentId);
-		return "redirect:/listEnrollment";
-	}
 
 }

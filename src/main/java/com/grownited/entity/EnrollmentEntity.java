@@ -1,5 +1,7 @@
 package com.grownited.entity;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,12 +16,13 @@ public class EnrollmentEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer enrollmentId;
 	private Integer userId;//fk
-	private String date;
+	private LocalDate date;
 	private Float amount;
 	private String transactionId;
 	private String remarks;
-	private String courseId;
-	
+	private Integer courseId;
+	private String authCode;
+	private String email;
 	
 	public Integer getEnrollmentId() {
 		return enrollmentId;
@@ -33,10 +36,11 @@ public class EnrollmentEntity {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-	public String getDate() {
+	
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public Float getAmount() {
@@ -57,12 +61,27 @@ public class EnrollmentEntity {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public String getCourseId() {
+	public Integer getCourseId() {
 		return courseId;
 	}
-	public void setCourseId(String courseId) {
+	public void setCourseId(Integer courseId) {
 		this.courseId = courseId;
 	}
+	public String getAuthCode() {
+		return authCode;
+	}
+	public void setAuthCode(String authCode) {
+		this.authCode = authCode;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
+	
 	
 	
 }
