@@ -3,9 +3,12 @@ package com.grownited.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,11 +24,15 @@ public class BatchEntity {
 	private String description;
 	private LocalDate startDate;
 	private LocalDate endDate;
-	private Long facultyId;
+	private Integer facultyId;
 	private Long reporterId;
 	private String status; // COMPLETED, HOLD, NOT_STARTED, ON_GOING
 	private Integer courseId;
-	private Long subjectId;
+	private Integer subjectId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "facultyId", referencedColumnName = "userId", insertable = false, updatable = false)
+	private UserEntity faculty;
+
 	public Integer getBatchId() {
 		return batchId;
 	}
@@ -68,10 +75,11 @@ public class BatchEntity {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
-	public Long getFacultyId() {
+	
+	public Integer getFacultyId() {
 		return facultyId;
 	}
-	public void setFacultyId(Long facultyId) {
+	public void setFacultyId(Integer facultyId) {
 		this.facultyId = facultyId;
 	}
 	public Long getReporterId() {
@@ -92,11 +100,18 @@ public class BatchEntity {
 	public void setCourseId(Integer courseId) {
 		this.courseId = courseId;
 	}
-	public Long getSubjectId() {
+	
+	public Integer getSubjectId() {
 		return subjectId;
 	}
-	public void setSubjectId(Long subjectId) {
+	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
+	}
+	public UserEntity getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(UserEntity faculty) {
+		this.faculty = faculty;
 	}
 	
 		

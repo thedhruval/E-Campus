@@ -10,16 +10,17 @@ public class SubjectEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long subjectId;
+	private Integer subjectId;
 	private String subjectName;
 	private Integer courseId;
 	private Integer semester;
 	
 	
-	public Long getSubjectId() {
+	
+	public Integer getSubjectId() {
 		return subjectId;
 	}
-	public void setSubjectId(Long subjectId) {
+	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
 	}
 	public String getSubjectName() {

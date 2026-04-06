@@ -87,19 +87,20 @@
 							Batch</a></li>
 				</ul>
 			</div></li>
-			
+
 		<!-- Batch -->
 		<li class="nav-item"><a class="nav-link"
-			data-bs-toggle="collapse" href="#batchStudentMenu" aria-expanded="false"
-			aria-controls="batchStudentMenu"> <i class="mdi mdi-palette menu-icon"></i>
-				<span class="menu-title">Batch Student</span> <i class="menu-arrow"></i>
+			data-bs-toggle="collapse" href="#batchStudentMenu"
+			aria-expanded="false" aria-controls="batchStudentMenu"> <i
+				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Batch
+					Student</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="batchStudentMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="newBatchStudent">New
-							Batch Student</a></li>
-					<li class="nav-item"><a class="nav-link" href="listBatchStudent">List
-							Batch Student</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="newBatchStudent">New Batch Student</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listBatchStudent">List Batch Student</a></li>
 				</ul>
 			</div></li>
 
@@ -134,34 +135,51 @@
 						href="listBatchSession">List Batch Session</a></li>
 				</ul>
 			</div></li>
-			
-			<!-- Exam -->
+
+		<!-- Batch -->
 		<li class="nav-item"><a class="nav-link"
-			data-bs-toggle="collapse" href="#examMenu"
-			aria-expanded="false" aria-controls="examMenu"> <i
-				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Exam</span> <i class="menu-arrow"></i>
+			data-bs-toggle="collapse" href="#batchMenu" aria-expanded="false"
+			aria-controls="batchMenu"> <i class="mdi mdi-palette menu-icon"></i>
+				<span class="menu-title">Take Attendance</span> <i
+				class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="batchMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="selectBatchForAttendance">Select batch for attendance</a></li>
+					<li class="nav-item"><a class="nav-link" href="listBatch">List
+							Batches</a></li>
+				</ul>
+			</div></li>
+
+		<!-- Exam -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#examMenu" aria-expanded="false"
+			aria-controls="examMenu"> <i class="mdi mdi-palette menu-icon"></i>
+				<span class="menu-title">Exam</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="examMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link"
-						href="newExam">New Exam</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="listExam">List Exam</a></li>
+					<li class="nav-item"><a class="nav-link" href="newExam">New
+							Exam</a></li>
+					<li class="nav-item"><a class="nav-link" href="listExam">List
+							Exam</a></li>
 				</ul>
 			</div></li>
-			
-			<!-- Exam Result -->
+
+		<!-- Exam Result -->
 		<li class="nav-item"><a class="nav-link"
 			data-bs-toggle="collapse" href="#examResultMenu"
 			aria-expanded="false" aria-controls="examResultMenu"> <i
-				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Exam Result</span> <i class="menu-arrow"></i>
+				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Exam
+					Result</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="examResultMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link"
-						href="newExamResult">New Exam Result</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="listExamResult">List Exam Result</a></li>
+					<li class="nav-item"><a class="nav-link" href="newExamResult">New
+							Exam Result</a></li>
+					<li class="nav-item"><a class="nav-link" href="listExamResult">List
+							Exam Result</a></li>
 				</ul>
 			</div></li>
 	</ul>

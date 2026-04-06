@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,7 +38,15 @@ public class BatchSessionEntity {
     private String topic;
     private Integer totalStudent;
     private Integer batchId;   // foreign key reference to Batch
-    private Long facultyId;    // foreign key reference to User
+    private Integer facultyId;    // foreign key reference to User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batchId", referencedColumnName = "batchId", insertable = false, updatable = false)
+    private BatchEntity batch;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "facultyId", referencedColumnName = "userId", insertable = false, updatable = false)
+    private UserEntity faculty;
+
 
     // Getters and Setters
     public Integer getBatchSessionId() {
@@ -171,10 +182,23 @@ public class BatchSessionEntity {
         this.batchId = batchId;
     }
 
-    public Long getFacultyId() {
-        return facultyId;
-    }
-    public void setFacultyId(Long facultyId) {
-        this.facultyId = facultyId;
-    }
+	public Integer getFacultyId() {
+		return facultyId;
+	}
+	public void setFacultyId(Integer facultyId) {
+		this.facultyId = facultyId;
+	}
+	public BatchEntity getBatch() {
+		return batch;
+	}
+	public void setBatch(BatchEntity batch) {
+		this.batch = batch;
+	}
+	public UserEntity getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(UserEntity faculty) {
+		this.faculty = faculty;
+	}
+    
 }

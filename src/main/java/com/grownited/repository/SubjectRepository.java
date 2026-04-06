@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.grownited.entity.SubjectEntity;
 
 @Repository
-public interface SubjectRepository extends JpaRepository<SubjectEntity, Long>{
+public interface SubjectRepository extends JpaRepository<SubjectEntity, Integer>{
 
 	
 

@@ -93,9 +93,9 @@
 			<div class="collapse" id="batchSessionMenu">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="facultyNewBatchSession">New Batch Session</a></li>
+						href="newBatchSession">New Batch Session</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="facultyListBatchSession">List Batch Session</a></li>
+						href="listBatchSession">List Batch Session</a></li>
 				</ul>
 			</div></li>
 	</ul>

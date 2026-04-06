@@ -46,7 +46,7 @@ public class SubjectController {
 	}
 	
 	@GetMapping("/editSubject")
-	public String editSubject(Long subjectId, Model model) {
+	public String editSubject(Integer subjectId, Model model) {
 	    Optional<SubjectEntity> subject = subjectRepository.findById(subjectId);
 	    if (subject.isPresent()) {
 	        model.addAttribute("subject", subject.get());
