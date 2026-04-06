@@ -24,118 +24,123 @@ import com.grownited.repository.BatchStudentRepository;
 @RequestMapping("/faculty")
 public class FacultyAttendanceController {
 
-    @Autowired
-    private BatchRepository batchRepository;
+	@Autowired
+	private BatchRepository batchRepository;
 
-    @Autowired
-    private BatchSessionRepository batchSessionRepository;
+	@Autowired
+	private BatchSessionRepository batchSessionRepository;
 
-    @Autowired
-    private BatchStudentRepository batchStudentRepository;
+	@Autowired
+	private BatchStudentRepository batchStudentRepository;
 
-    @Autowired
-    private AttendanceRepository attendanceRepository;
+	@Autowired
+	private AttendanceRepository attendanceRepository;
 
-    // Step 1: Select Batch
-    @GetMapping("/selectBatchForAttendance")
-    public String selectBatchForAttendance(Model model) {
-        List<BatchEntity> batches = batchRepository.findAll();
-        model.addAttribute("batches", batches);
-        return "Faculty/SelectBatchForAttendance";
-    }
+	// Step 1: Select Batch
+	@GetMapping("/selectBatchForAttendance")
+	public String selectBatchForAttendance(Model model) {
+		List<BatchEntity> batches = batchRepository.findAll();
+		model.addAttribute("batches", batches);
+		return "Faculty/SelectBatchForAttendance";
+	}
 
-    // Step 2: Select Session (only UPCOMMING or ONGOING)
-    @GetMapping("/selectSessionForAttendance")
-    public String selectSessionForAttendance(@RequestParam("batchId") Integer batchId, Model model) {
-        List<BatchSessionEntity> sessions = batchSessionRepository.findByBatchIdAndStatusIn(
-                batchId, List.of("UPCOMMING", "ONGOING"));
-        model.addAttribute("sessions", sessions);
-        model.addAttribute("batchId", batchId);
-        return "Faculty/SelectSessionForAttendance";
-    }
+	// Step 2: Select Session (only UPCOMMING or ONGOING)
+	@GetMapping("/selectSessionForAttendance")
+	public String selectSessionForAttendance(@RequestParam("batchId") Integer batchId, Model model) {
+		List<BatchSessionEntity> sessions = batchSessionRepository.findByBatchIdAndStatusIn(batchId,
+				List.of("UPCOMMING", "ONGOING"));
+		model.addAttribute("sessions", sessions);
+		model.addAttribute("batchId", batchId);
+		return "Faculty/SelectSessionForAttendance";
+	}
 
-    // Step 3: Take Attendance Form
-    @GetMapping("/takeAttendance")
-    public String takeAttendance(@RequestParam("batchId") Integer batchId,
-                                 @RequestParam("sessionId") Integer sessionId,
-                                 Model model) {
-        List<BatchStudentEntity> students = batchStudentRepository.findByBatchId(batchId);
+	// Step 3: Take Attendance Form
+	@GetMapping("/takeAttendance")
+	public String takeAttendance(@RequestParam("batchId") Integer batchId, @RequestParam("sessionId") Integer sessionId,
+			Model model) {
+		List<BatchStudentEntity> students = batchStudentRepository.findByBatchId(batchId);
 
-        model.addAttribute("students", students);
-        model.addAttribute("batchId", batchId);
-        model.addAttribute("sessionId", sessionId);
-        return "Faculty/TakeAttendance";
-    }
+		model.addAttribute("students", students);
+		model.addAttribute("batchId", batchId);
+		model.addAttribute("sessionId", sessionId);
+		return "Faculty/TakeAttendance";
+	}
 
-    // Step 4: Save Attendance
-    @PostMapping("/saveAttendance")
-    public String saveAttendance(@RequestParam("sessionId") Integer sessionId,
-                                 @RequestParam Map<String, String> allParams) {
+	// Step 4: Save Attendance
+	@PostMapping("/saveAttendance")
+	public String saveAttendance(@RequestParam("sessionId") Integer sessionId,
+			@RequestParam Map<String, String> allParams) {
 
-        BatchSessionEntity currentSession = batchSessionRepository.findById(sessionId).orElse(null);
-        if (currentSession == null) {
-            return "redirect:/faculty/faculty-dashboard";
-        }
+		BatchSessionEntity currentSession = batchSessionRepository.findById(sessionId).orElse(null);
+		if (currentSession == null) {
+			return "redirect:/faculty/faculty-dashboard";
+		}
 
-        // Counters
-        int totalStudents = 0;
-        int presentOfflineCount = 0;
-        int presentOnlineCount = 0;
-        int absentCount = 0;
-        int lateCount = 0;
-        int excusedCount = 0;
-        int naCount = 0;
+		// Counters
+		int totalStudents = 0;
+		int presentOfflineCount = 0;
+		int presentOnlineCount = 0;
+		int absentCount = 0;
+		int lateCount = 0;
+		int excusedCount = 0;
+		int naCount = 0;
 
-        // Save each student's attendance
-        for (String key : allParams.keySet()) {
-            if (key.startsWith("student_")) {
-                Integer studentId = Integer.parseInt(key.replace("student_", ""));
-                String status = allParams.get(key);
+		// Save each student's attendance
+		for (String key : allParams.keySet()) {
+			if (key.startsWith("student_")) {
+				Integer studentId = Integer.parseInt(key.replace("student_", ""));
+				String status = allParams.get(key);
 
-                AttendanceEntity attendance = new AttendanceEntity();
-                attendance.setBatchSessionId(sessionId);
-                attendance.setStudentId(studentId);
-                attendance.setStatus(status);
+				AttendanceEntity attendance = new AttendanceEntity();
+				attendance.setBatchSessionId(sessionId);
+				attendance.setStudentId(studentId);
+				attendance.setStatus(status);
 
-                attendanceRepository.save(attendance);
+				// Capture notes for this student
+				String notesKey = "notes_" + studentId;
+				if (allParams.containsKey(notesKey)) {
+					attendance.setNotes(allParams.get(notesKey));
+				}
 
-                // Count totals
-                totalStudents++;
-                switch (status) {
-                    case "PRESENT_OFFLINE":
-                        presentOfflineCount++;
-                        break;
-                    case "PRESENT_ONLINE":
-                        presentOnlineCount++;
-                        break;
-                    case "ABSENT":
-                        absentCount++;
-                        break;
-                    case "LATE":
-                        lateCount++;
-                        break;
-                    case "EXCUSED":
-                        excusedCount++;
-                        break;
-                    case "NA":
-                        naCount++;
-                        break;
-                }
-            }
-        }
+				attendanceRepository.save(attendance);
 
-        // Update session totals and mark as COMPLETED
-        currentSession.setTotalStudent(totalStudents);
-        currentSession.setPresentOffline(presentOfflineCount);
-        currentSession.setPresentOnline(presentOnlineCount);
-        currentSession.setAbsent(absentCount);
-        currentSession.setLate(lateCount);
-        currentSession.setExcuse(excusedCount);
-        currentSession.setNa(naCount);
-        currentSession.setStatus("COMPLETED");
+				// Count totals
+				totalStudents++;
+				switch (status) {
+				case "PRESENT_OFFLINE":
+					presentOfflineCount++;
+					break;
+				case "PRESENT_ONLINE":
+					presentOnlineCount++;
+					break;
+				case "ABSENT":
+					absentCount++;
+					break;
+				case "LATE":
+					lateCount++;
+					break;
+				case "EXCUSED":
+					excusedCount++;
+					break;
+				case "NA":
+					naCount++;
+					break;
+				}
+			}
+		}
 
-        batchSessionRepository.save(currentSession);
+		// Update session totals and mark as COMPLETED
+		currentSession.setTotalStudent(totalStudents);
+		currentSession.setPresentOffline(presentOfflineCount);
+		currentSession.setPresentOnline(presentOnlineCount);
+		currentSession.setAbsent(absentCount);
+		currentSession.setLate(lateCount);
+		currentSession.setExcuse(excusedCount);
+		currentSession.setNa(naCount);
+		currentSession.setStatus("COMPLETED");
 
-        return "redirect:/faculty/faculty-dashboard";
-    }
+		batchSessionRepository.save(currentSession);
+
+		return "redirect:/faculty/faculty-dashboard";
+	}
 }
