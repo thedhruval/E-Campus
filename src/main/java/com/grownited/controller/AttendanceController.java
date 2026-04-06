@@ -1,7 +1,9 @@
 package com.grownited.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,12 @@ import com.grownited.entity.AttendanceEntity;
 import com.grownited.entity.BatchEntity;
 import com.grownited.entity.BatchSessionEntity;
 import com.grownited.entity.BatchStudentEntity;
+import com.grownited.entity.UserEntity;
 import com.grownited.repository.AttendanceRepository;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.BatchSessionRepository;
 import com.grownited.repository.BatchStudentRepository;
+import com.grownited.repository.UserRepository;
 
 @Controller
 public class AttendanceController {
@@ -32,6 +36,9 @@ public class AttendanceController {
 
 	@Autowired
 	private AttendanceRepository attendanceRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	// Step 1: Select Batch
 	@GetMapping("/selectBatchForAttendance")
@@ -139,6 +146,88 @@ public class AttendanceController {
 		batchSessionRepository.save(currentSession);
 
 		return "redirect:/admin-dashboard";
+	}
+
+	// Step A: Show dropdown to select session
+	@GetMapping("/selectSessionForListAttendance")
+	public String selectSessionForListAttendance(Model model) {
+		List<BatchSessionEntity> sessions = batchSessionRepository.findByStatus("COMPLETED");
+		model.addAttribute("sessions", sessions);
+		return "SelectSessionForListAttendance";
+	}
+
+	// Step B: Show attendance list
+	@PostMapping("/listAttendance")
+	public String listAttendance(@RequestParam("sessionId") Integer sessionId, Model model) {
+		BatchSessionEntity session = batchSessionRepository.findById(sessionId).orElse(null);
+		if (session == null) {
+			return "redirect:/admin-dashboard";
+		}
+
+		List<AttendanceEntity> attendanceList = attendanceRepository.findByBatchSessionId(sessionId);
+
+		// Fetch user names for each studentId
+		Map<Integer, UserEntity> userMap = new HashMap<>();
+		for (AttendanceEntity att : attendanceList) {
+			userMap.put(att.getStudentId(), userRepository.findById(att.getStudentId()).orElse(null));
+		}
+
+		model.addAttribute("session", session);
+		model.addAttribute("attendanceList", attendanceList);
+		model.addAttribute("userMap", userMap);
+
+		return "ListAttendance";
+	}
+	
+	@GetMapping("/listAttendance")
+	public String getlistAttendance(@RequestParam("sessionId") Integer sessionId, Model model) {
+		BatchSessionEntity session = batchSessionRepository.findById(sessionId).orElse(null);
+		if (session == null) {
+			return "redirect:/admin-dashboard";
+		}
+
+		List<AttendanceEntity> attendanceList = attendanceRepository.findByBatchSessionId(sessionId);
+
+		// Fetch user names for each studentId
+		Map<Integer, UserEntity> userMap = new HashMap<>();
+		for (AttendanceEntity att : attendanceList) {
+			userMap.put(att.getStudentId(), userRepository.findById(att.getStudentId()).orElse(null));
+		}
+
+		model.addAttribute("session", session);
+		model.addAttribute("attendanceList", attendanceList);
+		model.addAttribute("userMap", userMap);
+
+		return "ListAttendance";
+	}
+
+	// Step C: Edit Attendance for a single student
+	@GetMapping("/editAttendance")
+	public String editAttendance(@RequestParam("attendanceId") Integer attendanceId, Model model) {
+		Optional<AttendanceEntity> attendance = attendanceRepository.findById(attendanceId);
+		if (attendance.isPresent()) {
+			AttendanceEntity att = attendance.get();
+			UserEntity student = userRepository.findById(att.getStudentId()).orElse(null);
+
+			model.addAttribute("attendance", att);
+			model.addAttribute("student", student);
+			return "EditAttendance";
+		} else {
+			return "redirect:/selectSessionForListAttendance";
+		}
+	}
+
+	@PostMapping("/updateAttendance")
+	public String updateAttendance(AttendanceEntity newAttendanceEntity) {
+		Optional<AttendanceEntity> attendance = attendanceRepository.findById(newAttendanceEntity.getAttendanceId());
+		if (attendance.isPresent()) {
+			AttendanceEntity dbAttendance = attendance.get();
+			dbAttendance.setStatus(newAttendanceEntity.getStatus());
+			dbAttendance.setNotes(newAttendanceEntity.getNotes());
+			attendanceRepository.save(dbAttendance);
+		}
+		// Redirect back to list for the same session
+		return "redirect:/listAttendance?sessionId=" + newAttendanceEntity.getBatchSessionId();
 	}
 
 }
