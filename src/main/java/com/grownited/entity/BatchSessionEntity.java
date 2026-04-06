@@ -19,15 +19,7 @@ public class BatchSessionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer batchSessionId;
-
-    private Integer absent;
-    private Integer cancel;
-    private Integer excuse;
-    private Integer late;
-    private Integer na;
     private String notes;
-    private Integer presentOffline;
-    private Integer presentOnline;
     private LocalDateTime reportingDateTime;
     private LocalDate sessionDate;
     private String sessionDay;
@@ -56,60 +48,13 @@ public class BatchSessionEntity {
         this.batchSessionId = batchSessionId;
     }
 
-    public Integer getAbsent() {
-        return absent;
-    }
-    public void setAbsent(Integer absent) {
-        this.absent = absent;
-    }
-
-    public Integer getCancel() {
-        return cancel;
-    }
-    public void setCancel(Integer cancel) {
-        this.cancel = cancel;
-    }
-
-    public Integer getExcuse() {
-        return excuse;
-    }
-    public void setExcuse(Integer excuse) {
-        this.excuse = excuse;
-    }
-
-    public Integer getLate() {
-        return late;
-    }
-    public void setLate(Integer late) {
-        this.late = late;
-    }
-
-    public Integer getNa() {
-        return na;
-    }
-    public void setNa(Integer na) {
-        this.na = na;
-    }
+    
 
     public String getNotes() {
         return notes;
     }
     public void setNotes(String notes) {
         this.notes = notes;
-    }
-
-    public Integer getPresentOffline() {
-        return presentOffline;
-    }
-    public void setPresentOffline(Integer presentOffline) {
-        this.presentOffline = presentOffline;
-    }
-
-    public Integer getPresentOnline() {
-        return presentOnline;
-    }
-    public void setPresentOnline(Integer presentOnline) {
-        this.presentOnline = presentOnline;
     }
 
     public LocalDateTime getReportingDateTime() {

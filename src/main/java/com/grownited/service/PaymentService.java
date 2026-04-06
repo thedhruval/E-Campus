@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.grownited.entity.CourseEntity;
 import com.grownited.entity.EnrollmentEntity;
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.CourseRepository;
 import com.grownited.repository.EnrollmentRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -23,6 +26,9 @@ public class PaymentService {
 
     @Autowired
     private EnrollmentRepository enrollmentRepository;
+    
+    @Autowired
+    CourseRepository courseRepository;
 
     private static String apiLoginId = "63xNws2TKv";
     private static String transactionKey = "7U5x647RWdvy9Ax6";
@@ -95,6 +101,19 @@ public class PaymentService {
                     enrollmentEntity.setDate(LocalDate.now());
 
                     enrollmentRepository.save(enrollmentEntity);
+                    
+                    Optional<CourseEntity> courseEntity = courseRepository.findById(courseId);
+                    if (courseEntity.isPresent()) {
+                    	CourseEntity course = courseEntity.get();
+                    
+                    Integer paidSeats = course.getPaidSeats();
+                    if (paidSeats == null) {
+                        paidSeats = 0;
+                    }
+                    paidSeats++;
+                    course.setPaidSeats(paidSeats);
+                    courseRepository.save(course);
+                    }
 
                 } else {
                     System.out.println("Failed Transaction: No messages.");

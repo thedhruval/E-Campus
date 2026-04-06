@@ -57,13 +57,14 @@
 		<li class="nav-item"><a class="nav-link"
 			data-bs-toggle="collapse" href="#batchMenu" aria-expanded="false"
 			aria-controls="batchMenu"> <i class="mdi mdi-palette menu-icon"></i>
-				<span class="menu-title">Take Attendance</span> <i class="menu-arrow"></i>
+				<span class="menu-title">Batch</span> <i class="menu-arrow"></i>
 		</a>
 			<div class="collapse" id="batchMenu">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="selectBatchForAttendance">Select batch for attendance</a></li>
+					<li class="nav-item"><a class="nav-link" href="selectBatchForAttendance">Take Attendance</a></li>
 					<li class="nav-item"><a class="nav-link" href="listBatch">List
 							Batches</a></li>
+					<li class="nav-item"><a class="nav-link" href="selectBatchToAddStudent">Add student to Batch</a></li>
 				</ul>
 			</div></li>
 

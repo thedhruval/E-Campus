@@ -82,12 +82,6 @@ public class AttendanceController {
 
 		// Counters
 		int totalStudents = 0;
-		int presentOfflineCount = 0;
-		int presentOnlineCount = 0;
-		int absentCount = 0;
-		int lateCount = 0;
-		int excusedCount = 0;
-		int naCount = 0;
 
 		// Save each student's attendance
 		for (String key : allParams.keySet()) {
@@ -111,36 +105,13 @@ public class AttendanceController {
 				// Count totals
 				totalStudents++;
 				switch (status) {
-				case "PRESENT_OFFLINE":
-					presentOfflineCount++;
-					break;
-				case "PRESENT_ONLINE":
-					presentOnlineCount++;
-					break;
-				case "ABSENT":
-					absentCount++;
-					break;
-				case "LATE":
-					lateCount++;
-					break;
-				case "EXCUSED":
-					excusedCount++;
-					break;
-				case "NA":
-					naCount++;
-					break;
+				
 				}
 			}
 		}
 
 		// Update session totals and mark as COMPLETED
 		currentSession.setTotalStudent(totalStudents);
-		currentSession.setPresentOffline(presentOfflineCount);
-		currentSession.setPresentOnline(presentOnlineCount);
-		currentSession.setAbsent(absentCount);
-		currentSession.setLate(lateCount);
-		currentSession.setExcuse(excusedCount);
-		currentSession.setNa(naCount);
 		currentSession.setStatus("COMPLETED");
 
 		batchSessionRepository.save(currentSession);

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.grownited.entity.BatchEntity;
 import com.grownited.entity.BatchSessionEntity;
-import com.grownited.entity.BatchTimeEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.BatchSessionRepository;
@@ -79,13 +78,6 @@ public class BatchSessionController {
 	        dbSession.setReportingDateTime(newSessionEntity.getReportingDateTime());
 	        dbSession.setTopic(newSessionEntity.getTopic());
 	        dbSession.setNotes(newSessionEntity.getNotes());
-	        dbSession.setPresentOffline(newSessionEntity.getPresentOffline());
-	        dbSession.setPresentOnline(newSessionEntity.getPresentOnline());
-	        dbSession.setAbsent(newSessionEntity.getAbsent());
-	        dbSession.setLate(newSessionEntity.getLate());
-	        dbSession.setExcuse(newSessionEntity.getExcuse());
-	        dbSession.setCancel(newSessionEntity.getCancel());
-	        dbSession.setNa(newSessionEntity.getNa());
 	        dbSession.setTotalStudent(newSessionEntity.getTotalStudent());
 	        dbSession.setStatus(newSessionEntity.getStatus());
 	        dbSession.setBatchId(newSessionEntity.getBatchId());

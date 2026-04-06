@@ -131,12 +131,6 @@ public class FacultyAttendanceController {
 
 		// Update session totals and mark as COMPLETED
 		currentSession.setTotalStudent(totalStudents);
-		currentSession.setPresentOffline(presentOfflineCount);
-		currentSession.setPresentOnline(presentOnlineCount);
-		currentSession.setAbsent(absentCount);
-		currentSession.setLate(lateCount);
-		currentSession.setExcuse(excusedCount);
-		currentSession.setNa(naCount);
 		currentSession.setStatus("COMPLETED");
 
 		batchSessionRepository.save(currentSession);

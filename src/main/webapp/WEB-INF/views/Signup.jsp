@@ -1,225 +1,119 @@
-<%--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>E-Campus Signup</title>
-<!-- base:css -->
-<link rel="stylesheet"
-	href="../../vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="../../css/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="../../images/favicon.png" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Signup</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="../../vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
 </head>
 
 <body>
-	<div class="container-scroller d-flex">
-		<!-- partial:../../partials/_sidebar.html -->
-		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			<!-- partial:../../partials/_navbar.html -->
-
-			<!-- partial -->
-			<div align = "center" class="main-panel">
-				<div align = "center" class="content-wrapper">
-					<div align = "center" class="row">
-						<div align = "center" class="col-md-8 grid-margin stretch-card">
-							<div align = "center" class="card">
-								<div align = "center" class="card-body">
-									<h4 align = "center" class="card-title">Default form</h4>
-									<p align = "center" class="card-description">Basic form layout</p>
-									<form  class="forms-sample">
-										<div align = "center" class="form-group">
-											<label for="exampleInputUsername1">Username</label> <input
-												type="text" class="form-control" id="exampleInputUsername1"
-												placeholder="Username">
-										</div>
-										<div align = "center" class="form-group">
-											<label for="exampleInputEmail1">Email address</label> <input
-												type="email" class="form-control" id="exampleInputEmail1"
-												placeholder="Email">
-										</div>
-										<div align = "center" class="form-group">
-											<label for="exampleInputPassword1">Password</label> <input
-												type="password" class="form-control"
-												id="exampleInputPassword1" placeholder="Password">
-										</div>
-										<div align = "center" class="form-group">
-											<label for="exampleInputConfirmPassword1">Confirm
-												Password</label> <input type="password" class="form-control"
-												id="exampleInputConfirmPassword1" placeholder="Password">
-										</div>
-										<div align = "center" class="form-check form-check-flat form-check-primary">
-											<label class="form-check-label"> <input
-												type="checkbox" class="form-check-input"> Remember
-												me
-											</label>
-										</div>
-										<button type="submit" class="btn btn-primary me-2">Submit</button>
-										<button class="btn btn-light">Cancel</button>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- content-wrapper ends -->
-				<!-- partial:../../partials/_footer.html -->
-				<jsp:include page="AdminFooter.jsp"></jsp:include>
-				<!-- partial -->
-			</div>
-			<!-- main-panel ends -->
-		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
-	<!-- container-scroller -->
-	<!-- base:js -->
-	<script src="../../vendors/js/vendor.bundle.base.js"></script>
-	<!-- endinject -->
-	<!-- inject:js -->
-	<script src="../../js/off-canvas.js"></script>
-	<script src="../../js/hoverable-collapse.js"></script>
-	<script src="../../js/template.js"></script>
-	<!-- endinject -->
-	<!-- plugin js for this page -->
-	<!-- End plugin js for this page -->
-	<!-- Custom js for this page-->
-	<script src="../../js/file-upload.js"></script>
-	<!-- End custom js for this page-->
-</body>
-
-</html>--%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Signup Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
-        /* Greyed-out placeholder styling for all inputs */
-        ::placeholder {
-            color: #6c757d;   /* Bootstrap's muted grey */
-            opacity: 1;       /* Ensure visibility */
-        }
-    </style>
-</head>
-<body class="bg-light">
-
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-5">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h3 class="text-center mb-4">Sign Up</h3>
-                    <form action="register" method="post" enctype = "multipart/form-data">
-                        <!-- First Name -->
-                        <div class="mb-3">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" name="firstName" required>
-                        </div>
-
-                        <!-- Last Name -->
-                        <div class="mb-3">
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" name="lastName" required>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-
-                        <!-- Gender -->
-                        <div class="mb-3">
-                            <label class="form-label">Gender</label>
-                            <select class="form-select" name="gender" required>
-                                <option value="" disabled selected>Select your gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-
-                        <!-- Birth Year -->
-                        <div class="mb-3">
-                            <label for="birthYear" class="form-label">Birth Year</label>
-                            <input type="number" class="form-control" id="birthYear" name="birthYear" 
-                                   placeholder="e.g. 1998" min="1900" max="2026" required>
-                        </div>
-                        
-                        <!-- Contact Number -->
-                        <div class="mb-3">
-                            <label for="contactNumber" class="form-label">Contact Number</label>
-                            <input type="tel" class="form-control" id="contactNumber" name="contactNum" 
-                                   placeholder="e.g. +91 9876543210" required>
-                        </div>
-
-                        <!-- Profile Picture -->
-                        <div class="mb-3">
-                            <label for="profilePicURL" class="form-label">Profile Picture</label>
-                            <input type="file" class="form-control" id="profilePicURL" name="profilePic">
-                        </div>
-
-                        <!-- Qualification -->
-                        <div class="mb-3">
-                            <label for="qualification" class="form-label">Qualification</label>
-                            <input type="text" class="form-control" id="qualification" name="qualification">
-                        </div>
-
-                        <!-- City -->
-                        <div class="mb-3">
-                            <label for="city" class="form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city">
-                        </div>
-
-                        <!-- State -->
-                        <div class="mb-3">
-                            <label for="state" class="form-label">State</label>
-                            <input type="text" class="form-control" id="state" name="state">
-                        </div>
-
-                        <!-- Country -->
-                        <div class="mb-3">
-                            <label for="country" class="form-label">Country</label>
-                            <input type="text" class="form-control" id="country" name="country">
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Sign Up</button>
-                        </div>
-                    </form>
+  <div class="container-scroller d-flex">
+    <div class="container-fluid page-body-wrapper full-page-wrapper d-flex">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-5 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="../../images/logo.png" alt="logo">
+              </div>
+              <h4>New here?</h4>
+              <h6 class="font-weight-light">Sign up to create your account.</h6>
+              <form action="register" method="post" enctype="multipart/form-data" class="pt-3">
+                
+                <!-- First Name -->
+                <div class="form-group">
+                  <input type="text" name="firstName" class="form-control form-control-lg" placeholder="First Name" required>
                 </div>
-            </div>
-            <!-- Links below card -->
-            <p class="text-center mt-3">
-                Already have an account? <a href="login">Login here</a>
-            </p>
-        </div>
-    </div>
-</div>
-<!-- Bootstrap JS -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                <!-- Last Name -->
+                <div class="form-group">
+                  <input type="text" name="lastName" class="form-control form-control-lg" placeholder="Last Name" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" required>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" required>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                  <select class="form-control form-control-lg" name="gender" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <!-- Birth Year -->
+                <div class="form-group">
+                  <input type="number" name="birthYear" class="form-control form-control-lg" placeholder="Birth Year (e.g. 1998)" min="1900" max="2026" required>
+                </div>
+
+                <!-- Contact Number -->
+                <div class="form-group">
+                  <input type="tel" name="contactNum" class="form-control form-control-lg" placeholder="Contact Number" required>
+                </div>
+
+                <!-- Profile Picture -->
+                <div class="form-group">
+                  <input type="file" name="profilePic" class="form-control form-control-lg">
+                </div>
+
+                <!-- Qualification -->
+                <div class="form-group">
+                  <input type="text" name="qualification" class="form-control form-control-lg" placeholder="Qualification">
+                </div>
+
+                <!-- City -->
+                <div class="form-group">
+                  <input type="text" name="city" class="form-control form-control-lg" placeholder="City">
+                </div>
+
+                <!-- State -->
+                <div class="form-group">
+                  <input type="text" name="state" class="form-control form-control-lg" placeholder="State">
+                </div>
+
+                <!-- Country -->
+                <div class="form-group">
+                  <input type="text" name="country" class="form-control form-control-lg" placeholder="Country">
+                </div>
+
+                <!-- Submit -->
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
+                </div>
+
+                <div class="text-center mt-4 font-weight-light">
+                  Already have an account? <a href="login" class="text-primary">Login</a>
+                </div>
+                <br>
+                <span class="text-danger">${error}</span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <jsp:include page="AdminFooter.jsp"></jsp:include>
 </body>
 </html>
