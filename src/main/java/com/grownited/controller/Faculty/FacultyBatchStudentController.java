@@ -61,12 +61,8 @@ public class FacultyBatchStudentController {
 
     // Step 3: Save student to batch
     @PostMapping("/saveBatchStudent")
-    public String saveBatchStudent(@RequestParam Integer batchId, @RequestParam Integer studentId) {
-        BatchStudentEntity bs = new BatchStudentEntity();
-        bs.setBatchId(batchId);
-        bs.setStudentId(studentId);
+    public String saveBatchStudent(BatchStudentEntity bs) {
         batchStudentRepository.save(bs);
-
         return "redirect:/faculty/selectBatchToAddStudent";
     }
 }

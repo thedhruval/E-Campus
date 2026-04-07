@@ -15,6 +15,8 @@ public interface EnrollmentRepository extends JpaRepository<EnrollmentEntity, In
 
 	List<EnrollmentEntity> findByUserId(Integer userId);
 	
+	long countByCourseId(Integer courseId);
+	
 	@Query("SELECT u FROM UserEntity u WHERE u.userId IN " +
 	           "(SELECT e.userId FROM EnrollmentEntity e WHERE e.courseId = :courseId) " +
 	           "AND u.userId NOT IN (SELECT bs.studentId FROM BatchStudentEntity bs WHERE bs.batchId = :batchId)")

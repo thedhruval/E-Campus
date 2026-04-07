@@ -70,6 +70,25 @@
 					</div>
 				</div>
 			</div>
+			<!-- Charts -->
+			<div class="col-md-6 stretch-card">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Batch Status Distribution</h4>
+						<canvas id="batchStatusChart"></canvas>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12 stretch-card">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">Course Enrollment Trend</h4>
+						<canvas id="courseEnrollmentChart"></canvas>
+					</div>
+				</div>
+			</div>
+
 
 			<div class="main-panel">
 				<div class="content-wrapper">
@@ -359,7 +378,30 @@
 					<!-- row end -->
 					<!-- row end -->
 				</div>
-				<!-- content-wrapper ends -->
+				<!-- batchStatusChart -->
+				<script type="text/javascript">
+					var completedCount = parseInt("${completedCount != null ? completedCount : 0}");
+					var ongoingCount = parseInt("${ongoingCount != null ? ongoingCount : 0}");
+					var holdCount = parseInt("${holdCount != null ? holdCount : 0}");
+					var notStartedCount = parseInt("${notStartedCount != null ? notStartedCount : 0}");
+				</script>
+				<!-- Course Enrolllment trend chart -->
+				<div class="col-md-12 stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Course Enrollment Trend</h4>
+							<canvas id="courseEnrollmentChart"></canvas>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var courseNames = "${courseNames}".replace("[", "")
+							.replace("]", "").split(", ");
+					var enrollmentCounts = "${enrollmentCounts}".replace("[",
+							"").replace("]", "").split(", ").map(Number);
+				</script>
+
+
 				<!-- partial:./partials/_footer.html -->
 				<jsp:include page="AdminFooter.jsp"></jsp:include>
 				<!-- partial -->
