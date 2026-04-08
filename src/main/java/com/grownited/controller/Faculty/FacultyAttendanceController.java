@@ -15,10 +15,13 @@ import com.grownited.entity.AttendanceEntity;
 import com.grownited.entity.BatchEntity;
 import com.grownited.entity.BatchSessionEntity;
 import com.grownited.entity.BatchStudentEntity;
+import com.grownited.entity.UserEntity;
 import com.grownited.repository.AttendanceRepository;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.BatchSessionRepository;
 import com.grownited.repository.BatchStudentRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/faculty")
@@ -38,8 +41,9 @@ public class FacultyAttendanceController {
 
 	// Step 1: Select Batch
 	@GetMapping("/selectBatchForAttendance")
-	public String selectBatchForAttendance(Model model) {
-		List<BatchEntity> batches = batchRepository.findAll();
+	public String selectBatchForAttendance(Model model, HttpSession session) {
+		UserEntity faculty = (UserEntity) session.getAttribute("user");
+		List<BatchEntity> batches = batchRepository.findByFacultyId(faculty.getUserId());
 		model.addAttribute("batches", batches);
 		return "Faculty/SelectBatchForAttendance";
 	}

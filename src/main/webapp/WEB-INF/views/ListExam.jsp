@@ -80,7 +80,6 @@
                                                     <td>${exam.subjectId}</td>
                                                     <td>${exam.courseId}</td>
                                                     <td>
-                                                        <a href="viewExam?examId=${exam.examId}" class="btn btn-info btn-sm">View</a>
                                                         <a href="editExam?examId=${exam.examId}" class="btn btn-warning btn-sm">Edit</a>
                                                         <a href="deleteExam?examId=${exam.examId}" class="btn btn-danger btn-sm"
                                                            onclick="return confirm('Are you sure you want to delete this exam?');">Delete</a>

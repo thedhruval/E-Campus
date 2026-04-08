@@ -53,7 +53,6 @@
                                                     <td>${batchTime.day}</td>
                                                     <td>${batchTime.batchId}</td>
                                                     <td>
-                                                        <a href="viewBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-info btn-sm">View</a>
                                                         <a href="editBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-warning btn-sm">Edit</a>
                                                         <a href="deleteBatchTime?batchTimeId=${batchTime.batchTimeId}" class="btn btn-danger btn-sm"
                                                            onclick="return confirm('Are you sure you want to delete this batch time?');">Delete</a>

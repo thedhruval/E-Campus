@@ -68,8 +68,7 @@
 														<td>${course.academicCycle}</td>
 														<td>${course.paidSeats}</td>
 														<td>${course.developmentCost}</td>
-														<td><a href="viewCourse?courseId=${course.courseId}"
-															class="btn btn-info btn-sm">View</a> <a
+														<td><a
 															href="editCourse?courseId=${course.courseId}"
 															class="btn btn-warning btn-sm">Edit</a> <a
 															href="deleteCourse?courseId=${course.courseId}"

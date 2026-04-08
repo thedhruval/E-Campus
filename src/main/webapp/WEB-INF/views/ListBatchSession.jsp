@@ -98,7 +98,6 @@
                                                     <td>${session.batchId}</td>
                                                     <td>${session.facultyId}</td>
                                                     <td>
-                                                        <a href="viewBatchSession?batchSessionId=${session.batchSessionId}" class="btn btn-info btn-sm">View</a>
                                                         <a href="editBatchSession?batchSessionId=${session.batchSessionId}" class="btn btn-warning btn-sm">Edit</a>
                                                         <a href="deleteBatchSession?batchSessionId=${session.batchSessionId}" class="btn btn-danger btn-sm"
                                                            onclick="return confirm('Are you sure you want to delete this batch session?');">Delete</a>

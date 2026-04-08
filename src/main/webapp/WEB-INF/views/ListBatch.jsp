@@ -92,7 +92,6 @@
                                                         <td>${batch.courseId}</td>
                                                         <td>${batch.subjectId}</td>
                                                         <td>
-                                                            <a href="viewBatch?batchId=${batch.batchId}" class="btn btn-info btn-sm">View</a>
                                                             <a href="editBatch?batchId=${batch.batchId}" class="btn btn-warning btn-sm">Edit</a>
                                                             <a href="deleteBatch?batchId=${batch.batchId}" class="btn btn-danger btn-sm"
                                                                onclick="return confirm('Are you sure you want to delete this batch?');">Delete</a>

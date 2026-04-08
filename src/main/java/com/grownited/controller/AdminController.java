@@ -28,7 +28,7 @@ public class AdminController {
 
 	@Autowired
 	private BatchRepository batchRepository;
-	
+
 	@Autowired
 	EnrollmentRepository enrollmentRepository;
 
@@ -59,17 +59,21 @@ public class AdminController {
 		model.addAttribute("notStartedCount", notStartedCount);
 
 		// Enrollment trend data
-	    List<CourseEntity> courses = courseRepository.findAll();
-	    List<String> courseNames = new ArrayList<>();
-	    List<Long> enrollmentCounts = new ArrayList<>();
+		List<CourseEntity> courses = courseRepository.findAll();
+		List<String> courseNames = new ArrayList<>();
+		List<Long> enrollmentCounts = new ArrayList<>();
 
-	    for (CourseEntity course : courses) {
-	        courseNames.add(course.getCourseName());
-	        enrollmentCounts.add(enrollmentRepository.countByCourseId(course.getCourseId()));
-	    }
+		for (CourseEntity course : courses) {
+			courseNames.add(course.getCourseName());
+			enrollmentCounts.add(enrollmentRepository.countByCourseId(course.getCourseId()));
+		}
 
-	    model.addAttribute("courseNames", courseNames);
-	    model.addAttribute("enrollmentCounts", enrollmentCounts);
+		model.addAttribute("courseNames", courseNames);
+		model.addAttribute("enrollmentCounts", enrollmentCounts);
+
+		// Course List
+		List<CourseEntity> courseList = courseRepository.findAll();
+		model.addAttribute("courseList", courseList);
 
 		return "AdminDashboard"; // jsp name
 	}
@@ -88,6 +92,34 @@ public class AdminController {
 
 		Long courseCount = courseRepository.count();
 		model.addAttribute("courseCount", courseCount);
+
+		// Batch status counts for chart
+		Long completedCount = batchRepository.countByStatus("COMPLETED");
+		Long ongoingCount = batchRepository.countByStatus("ON_GOING");
+		Long holdCount = batchRepository.countByStatus("HOLD");
+		Long notStartedCount = batchRepository.countByStatus("NOT_STARTED");
+
+		model.addAttribute("completedCount", completedCount);
+		model.addAttribute("ongoingCount", ongoingCount);
+		model.addAttribute("holdCount", holdCount);
+		model.addAttribute("notStartedCount", notStartedCount);
+
+		// Enrollment trend data
+		List<CourseEntity> courses = courseRepository.findAll();
+		List<String> courseNames = new ArrayList<>();
+		List<Long> enrollmentCounts = new ArrayList<>();
+
+		for (CourseEntity course : courses) {
+			courseNames.add(course.getCourseName());
+			enrollmentCounts.add(enrollmentRepository.countByCourseId(course.getCourseId()));
+		}
+
+		model.addAttribute("courseNames", courseNames);
+		model.addAttribute("enrollmentCounts", enrollmentCounts);
+
+		// Course List
+		List<CourseEntity> courseList = courseRepository.findAll();
+		model.addAttribute("courseList", courseList);
 
 		return "AdminDashboard"; // jsp name
 

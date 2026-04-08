@@ -69,8 +69,7 @@
                                                         </c:choose>
                                                     </td>
                                                     <td>
-                                                        <a href="viewExamResult?examResultId=${result.examResultId}" class="btn btn-info btn-sm">View</a>
-                                                        <a href="editExamResult?examResultId=${result.examResultId}" class="btn btn-warning btn-sm">Edit</a>
+                                                       <a href="editExamResult?examResultId=${result.examResultId}" class="btn btn-warning btn-sm">Edit</a>
                                                         <a href="deleteExamResult?examResultId=${result.examResultId}" class="btn btn-danger btn-sm"
                                                            onclick="return confirm('Are you sure you want to delete this exam result?');">Delete</a>
                                                     </td>
