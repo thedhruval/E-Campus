@@ -298,6 +298,38 @@ $(function() {
         }
     });
 
+	$(function() {
+	  if ($("#studentAttendanceChart").length) {
+	    var ctx = $("#studentAttendanceChart").get(0).getContext("2d");
+
+	    var studentAttendanceChart = new Chart(ctx, {
+	      type: 'pie',
+	      data: {
+	        labels: ["Present", "Absent"],
+	        datasets: [{
+	          data: [presentCount, absentCount],
+	          backgroundColor: [
+	            'rgba(75, 192, 192, 0.5)',
+	            'rgba(255, 99, 132, 0.5)'
+	          ],
+	          borderColor: [
+	            'rgba(75, 192, 192, 1)',
+	            'rgba(255, 99, 132, 1)'
+	          ],
+	          borderWidth: 1
+	        }]
+	      },
+	      options: {
+	        responsive: true,
+	        animation: {
+	          animateScale: true,
+	          animateRotate: true
+	        }
+	      }
+	    });
+	  }
+	});
+
 
 
 });

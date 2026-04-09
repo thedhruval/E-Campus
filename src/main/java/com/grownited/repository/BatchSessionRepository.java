@@ -13,5 +13,7 @@ public interface BatchSessionRepository extends JpaRepository<BatchSessionEntity
 	List<BatchSessionEntity> findByBatchIdAndStatusIn(Integer batchId, List<String> statuses);
 
 	List<BatchSessionEntity> findByStatus(String status);
+	
+	List<BatchSessionEntity> findByBatchIdAndStatus(Integer batchId, String status);
 
 }

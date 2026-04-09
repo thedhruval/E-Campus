@@ -9,5 +9,7 @@ import com.grownited.entity.CourseEntity;
 
 @Repository
 public interface CourseRepository extends JpaRepository<CourseEntity, Integer>{
+	
+	CourseEntity findByCourseId(Integer courseId);
 
 }

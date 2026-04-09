@@ -23,7 +23,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Select Batch</h4>
-                                <form action="${pageContext.request.contextPath}/faculty/addStudentToBatch" method="post">
+                                <form action="/faculty/addStudentToBatch" method="post">
                                     <div class="mb-3">
                                         <label for="batchId" class="form-label">Batch:</label>
                                         <select name="batchId" id="batchId" class="form-select" required>

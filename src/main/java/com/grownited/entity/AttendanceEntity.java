@@ -1,9 +1,12 @@
 package com.grownited.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class AttendanceEntity {
@@ -15,6 +18,9 @@ public class AttendanceEntity {
     private Integer studentId;      // FK to User/BatchStudent
     private String status;          // PRESENT, ABSENT, LATE, EXCUSED, NA
     private String notes;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batchSessionId", referencedColumnName = "batchSessionId", insertable = false, updatable = false)
+    private BatchSessionEntity batchSession;
 	public Integer getAttendanceId() {
 		return attendanceId;
 	}
@@ -45,5 +51,12 @@ public class AttendanceEntity {
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
+	public BatchSessionEntity getBatchSession() {
+		return batchSession;
+	}
+	public void setBatchSession(BatchSessionEntity batchSession) {
+		this.batchSession = batchSession;
+	}
+	
     
 }

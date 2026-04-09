@@ -40,19 +40,7 @@
 				</ul>
 			</div></li>
 
-		<!-- Subject -->
-		<li class="nav-item"><a class="nav-link"
-			data-bs-toggle="collapse" href="#subjectMenu" aria-expanded="false"
-			aria-controls="subjectMenu"> <i class="mdi mdi-palette menu-icon"></i>
-				<span class="menu-title">Subject</span> <i class="menu-arrow"></i>
-		</a>
-			<div class="collapse" id="subjectMenu">
-				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="listSubject">List
-							Subjects</a></li>
-				</ul>
-			</div></li>
-
+		
 		<!-- Batch -->
 		<li class="nav-item"><a class="nav-link"
 			data-bs-toggle="collapse" href="#batchMenu" aria-expanded="false"
@@ -65,22 +53,6 @@
 					<li class="nav-item"><a class="nav-link" href="listBatch">List
 							Batches</a></li>
 					<li class="nav-item"><a class="nav-link" href="selectBatchToAddStudent">Add student to Batch</a></li>
-				</ul>
-			</div></li>
-
-		<!-- Batch Time -->
-		<li class="nav-item"><a class="nav-link"
-			data-bs-toggle="collapse" href="#batchTimeMenu" aria-expanded="false"
-			aria-controls="batchTimeMenu"> <i
-				class="mdi mdi-palette menu-icon"></i> <span class="menu-title">Batch
-					Time</span> <i class="menu-arrow"></i>
-		</a>
-			<div class="collapse" id="batchTimeMenu">
-				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="facultyNewBatchTime">New
-							Batch Time</a></li>
-					<li class="nav-item"><a class="nav-link" href="facultyListBatchTime">List
-							Batch Time</a></li>
 				</ul>
 			</div></li>
 
@@ -99,5 +71,7 @@
 						href="listBatchSession">List Batch Session</a></li>
 				</ul>
 			</div></li>
+			
+			
 	</ul>
 </nav>

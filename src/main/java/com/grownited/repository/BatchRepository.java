@@ -15,5 +15,7 @@ public interface BatchRepository extends JpaRepository<BatchEntity, Integer> {
 	List<BatchEntity> findByFacultyId(Integer facultyId);
 	
 	Long countByStatus(String status);
+	
+	List<BatchEntity> findByBatchIdIn(List<Integer> batchIds);
 
 }

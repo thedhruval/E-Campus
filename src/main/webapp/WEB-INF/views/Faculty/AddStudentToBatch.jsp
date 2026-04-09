@@ -23,7 +23,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Add Student to Batch: ${batch.batchName}</h4>
-                                <form action="${pageContext.request.contextPath}/faculty/saveBatchStudent" method="post">
+                                <form action="/faculty/saveBatchStudent" method="post">
                                     <input type="hidden" name="batchId" value="${batch.batchId}">
                                     <div class="mb-3">
                                         <label for="studentId" class="form-label">Student:</label>

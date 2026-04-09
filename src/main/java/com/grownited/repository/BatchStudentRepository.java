@@ -11,5 +11,7 @@ import com.grownited.entity.BatchStudentEntity;
 public interface BatchStudentRepository extends JpaRepository<BatchStudentEntity, Integer>{
 	
 	List<BatchStudentEntity> findByBatchId(Integer batchId);
+	
+	List<BatchStudentEntity> findByStudentId(Integer studentId);
 
 }
