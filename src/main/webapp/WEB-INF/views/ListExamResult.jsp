@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="images/favicon.png" />
+    <!-- DataTables CSS -->
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 </head>
 <body>
 <div class="container-scroller d-flex">
@@ -37,7 +40,8 @@
                             <div class="card-body">
                                 <h4 class="card-title">List of Exam Results</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-bordered align-middle">
+                                    <table id="examResultTable"
+                                    class="table table-striped table-hover table-bordered align-middle">
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>Exam</th>
@@ -92,6 +96,23 @@
         </div>
     </div>
 </div>
+<!-- vendor scripts -->
+
+
+<!-- DataTables JS -->
+<script
+	src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#examResultTable').DataTable({
+				"paging" : true, // enables pagination
+				"pageLength" : 10, // rows per page
+				"lengthChange" : false
+			// hides "show X entries" dropdown (optional)
+			});
+		});
+	</script>
+
 
 
 </body>

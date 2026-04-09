@@ -3,9 +3,12 @@ package com.grownited.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +26,13 @@ public class EnrollmentEntity {
 	private Integer courseId;
 	private String authCode;
 	private String email;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", referencedColumnName = "userId", insertable = false, updatable = false)
+    private UserEntity user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "courseId", referencedColumnName = "courseId", insertable = false, updatable = false)
+    private CourseEntity course;
 	
 	public Integer getEnrollmentId() {
 		return enrollmentId;
@@ -78,6 +88,18 @@ public class EnrollmentEntity {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public UserEntity getUser() {
+		return user;
+	}
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+	public CourseEntity getCourse() {
+		return course;
+	}
+	public void setCourse(CourseEntity course) {
+		this.course = course;
 	}
 	
 	
