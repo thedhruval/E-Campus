@@ -9,14 +9,14 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Admin Dashboard - Exams</title>
+    <title>Faculty Dashboard - Exams</title>
     <!-- base:css -->
-    <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="../images/favicon.png" />
     <!-- DataTables CSS -->
 <link rel="stylesheet"
 	href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -25,11 +25,11 @@
 <div class="container-scroller d-flex">
 
     <!-- Sidebar -->
-    <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+    <jsp:include page="FacultyLeftSidebar.jsp"></jsp:include>
 
     <div class="container-fluid page-body-wrapper">
         <!-- Header -->
-        <jsp:include page="AdminHeader.jsp"></jsp:include>
+        <jsp:include page="FacultyHeader.jsp"></jsp:include>
 
         <div class="main-panel">
             <div class="content-wrapper">
@@ -53,7 +53,6 @@
                                                 <th>Batch</th>
                                                 <th>Subject</th>
                                                 <th>Course</th>
-                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -83,18 +82,13 @@
                                                     <td>${exam.batch.batchName}</td>
                                                     <td>${exam.subject.subjectName}</td>
                                                     <td>${exam.course.courseName}</td>
-                                                    <td>
-                                                        <a href="editExam?examId=${exam.examId}" class="btn btn-warning btn-sm">Edit</a>
-                                                        <a href="deleteExam?examId=${exam.examId}" class="btn btn-danger btn-sm"
-                                                           onclick="return confirm('Are you sure you want to delete this exam?');">Delete</a>
-                                                    </td>
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                            <a href="faculty-dashboard" class="btn btn-secondary">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -103,7 +97,7 @@
             <!-- content-wrapper ends -->
 
             <!-- Footer -->
-            <jsp:include page="AdminFooter.jsp"></jsp:include>
+            <jsp:include page="FacultyFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>

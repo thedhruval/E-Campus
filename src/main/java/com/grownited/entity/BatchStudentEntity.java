@@ -20,6 +20,9 @@ public class BatchStudentEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studentId", referencedColumnName = "userId", insertable = false, updatable = false)
     private UserEntity user;
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "batchId", referencedColumnName = "batchId", insertable = false, updatable = false)
+    private BatchEntity batch;
 
     // getters and setters
     public UserEntity getUser() {
@@ -46,6 +49,14 @@ public class BatchStudentEntity {
 	}
 	public void setBatchId(Integer batchId) {
 		this.batchId = batchId;
+	}
+
+	public BatchEntity getBatch() {
+		return batch;
+	}
+
+	public void setBatch(BatchEntity batch) {
+		this.batch = batch;
 	}
 	
 	

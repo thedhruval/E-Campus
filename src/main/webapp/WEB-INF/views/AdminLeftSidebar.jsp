@@ -91,6 +91,38 @@
         </ul>
       </div>
     </li>
+    
+    <!-- Batch Student-->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#batchStudentMenu"
+			aria-expanded="false" aria-controls="batchStudentMenu"> <i
+				class="mdi mdi-account-group menu-icon"></i> <span class="menu-title">Batch
+					Student</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="batchStudentMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="newBatchStudent">New Batch Student</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listBatchStudent">List Batch Student</a></li>
+				</ul>
+			</div></li>
+			
+	<!-- Batch Session -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#batchSessionMenu"
+			aria-expanded="false" aria-controls="batchSessionMenu"> <i
+				class="mdi mdi-calendar-check menu-icon"></i> <span class="menu-title">Batch
+					Session</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="batchSessionMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="newBatchSession">New Batch Session</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="listBatchSession">List Batch Session</a></li>
+				</ul>
+			</div></li>
 
     <!-- Attendance -->
     <li class="nav-item">

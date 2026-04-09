@@ -49,7 +49,6 @@
 													<th>Academic Cycle</th>
 													<th>Paid Seats</th>
 													<th>Development Cost</th>
-													<th>Actions</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -68,14 +67,7 @@
 														<td>${course.academicCycle}</td>
 														<td>${course.paidSeats}</td>
 														<td>${course.developmentCost}</td>
-														<td><a
-															href="editCourse?courseId=${course.courseId}"
-															class="btn btn-warning btn-sm">Edit</a> <a
-															href="deleteCourse?courseId=${course.courseId}"
-															class="btn btn-danger btn-sm"
-															onclick="return confirm('Are you sure you want to delete this course?');">
-																Delete </a></td>
-													</tr>
+														</tr>
 												</c:forEach>
 											</tbody>
 										</table>

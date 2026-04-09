@@ -56,7 +56,7 @@
                                             <c:forEach var="result" items="${examResults}">
                                                 <tr>
                                                     <td>${result.examId}</td>
-                                                    <td>${result.studentId}</td>
+                                                    <td>${result.student.firstName} ${result.student.lastName}</td>
                                                     <td>${result.obtainMarks}</td>
                                                     <td>${result.percentage}</td>
                                                     <td>

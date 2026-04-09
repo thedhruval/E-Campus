@@ -5,21 +5,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Admin Dashboard</title>
-<link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="shortcut icon" href="images/favicon.png" />
+<title>Faculty Dashboard</title>
+<link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="shortcut icon" href="../images/favicon.png" />
 </head>
 <body>
     <div class="container-scroller d-flex">
 
         <!-- Sidebar -->
-        <jsp:include page="AdminLeftSidebar.jsp"></jsp:include>
+        <jsp:include page="FacultyLeftSidebar.jsp"></jsp:include>
 
         <div class="container-fluid page-body-wrapper">
             <!-- Header -->
-            <jsp:include page="AdminHeader.jsp"></jsp:include>
+            <jsp:include page="FacultyHeader.jsp"></jsp:include>
 
             <div class="main-panel">
                 <div class="content-wrapper">
@@ -39,12 +39,13 @@
                                                     <th>Description</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
-                                                    <th>Faculty Name</th>
+                                                    <th>Faculty ID</th>
                                                     <th>Reporter ID</th>
                                                     <th>Status</th>
+                                                    <th>Course ID</th>
                                                     <th>Course Name</th>
+                                                    <th>Subject ID</th>
                                                     <th>Subject Name</th>
-                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -71,7 +72,7 @@
                                                         <td>${batch.description}</td>
                                                         <td>${batch.startDate}</td>
                                                         <td>${batch.endDate}</td>
-                                                        <td>${batch.faculty.firstName} ${batch.faculty.lastName}</td>
+                                                        <td>${batch.facultyId}</td>
                                                         <td>${batch.reporterId}</td>
                                                         <td>
                                                             <c:choose>
@@ -89,26 +90,23 @@
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </td>
+                                                        <td>${batch.courseId}</td>
                                                         <td>${batch.course.courseName}</td>
+                                                        <td>${batch.subjectId}</td>
                                                         <td>${batch.subject.subjectName}</td>
-                                                        <td>
-                                                            <a href="editBatch?batchId=${batch.batchId}" class="btn btn-warning btn-sm">Edit</a>
-                                                            <a href="deleteBatch?batchId=${batch.batchId}" class="btn btn-danger btn-sm"
-                                                               onclick="return confirm('Are you sure you want to delete this batch?');">Delete</a>
-                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <a href="admin-dashboard" class="btn btn-secondary">Cancel</a>
+                                <a href="faculty-dashboard" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <jsp:include page="AdminFooter.jsp"></jsp:include>
+                <jsp:include page="FacultyFooter.jsp"></jsp:include>
             </div>
         </div>
     </div>

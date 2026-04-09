@@ -34,7 +34,7 @@
                                             <thead class="table-dark">
                                                 <tr>
                                                     <th>Subject Name</th>
-                                                    <th>Course ID</th>
+                                                    <th>Course Name</th>
                                                     <th>Semester</th>
                                                     <th>Actions</th>
                                                 </tr>
@@ -43,7 +43,7 @@
                                                 <c:forEach var="subject" items="${subjectList}">
                                                     <tr>
                                                         <td>${subject.subjectName}</td>
-                                                        <td>${subject.courseId}</td>
+                                                        <td>${subject.course.courseName}</td>
                                                         <td>${subject.semester}</td>
                                                         <td>
                                                             <a href="editSubject?subjectId=${subject.subjectId}" class="btn btn-warning btn-sm">Edit</a>

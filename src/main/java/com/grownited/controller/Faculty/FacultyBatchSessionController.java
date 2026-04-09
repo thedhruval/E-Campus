@@ -21,44 +21,46 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/faculty")
 public class FacultyBatchSessionController {
 
-    @Autowired
-    private BatchRepository batchRepository;
+	@Autowired
+	private BatchRepository batchRepository;
 
-    @Autowired
-    private BatchSessionRepository batchSessionRepository;
+	@Autowired
+	private BatchSessionRepository batchSessionRepository;
 
-    // Step 1: Show form
-    @GetMapping("/newBatchSession")
-    public String newBatchSession(Model model, HttpSession session) {
-        UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
+	// Step 1: Show form
+	@GetMapping("/newBatchSession")
+	public String newBatchSession(Model model, HttpSession session) {
+		UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
 
-        if (loggedInUser == null || !"FACULTY".equals(loggedInUser.getRole())) {
-            return "redirect:/login";
-        }
+		Integer facultyId = loggedInUser.getUserId(); // <-- correct way
 
-        Integer facultyId = loggedInUser.getUserId();  // <-- correct way
+		List<BatchEntity> batchList = batchRepository.findByFacultyId(facultyId);
+		model.addAttribute("batchList", batchList);
 
-        List<BatchEntity> batchList = batchRepository.findByFacultyId(facultyId);
-        model.addAttribute("batchList", batchList);
+		return "Faculty/FacultyNewBatchSession";
+	}
 
-        return "Faculty/FacultyNewBatchSession";
-    }
+	// Step 2: Save session
+	@PostMapping("/saveBatchSession")
+	public String saveBatchSession(BatchSessionEntity batchSessionEntity, HttpSession session) {
+		UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
 
+		batchSessionEntity.setFacultyId(loggedInUser.getUserId());
 
-    // Step 2: Save session
-    @PostMapping("/saveBatchSession")
-    public String saveBatchSession(BatchSessionEntity batchSessionEntity, HttpSession session) {
-        UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
+		batchSessionRepository.save(batchSessionEntity);
 
-        if (loggedInUser == null || !"FACULTY".equals(loggedInUser.getRole())) {
-            return "redirect:/login";
-        }
+		return "redirect:/faculty/faculty-dashboard";
+	}
 
-        batchSessionEntity.setFacultyId(loggedInUser.getUserId());
+	@GetMapping("/listBatchSession")
+	public String listBatchSession(Model model, HttpSession session) {
+		UserEntity loggedInUser = (UserEntity) session.getAttribute("user");
 
-        batchSessionRepository.save(batchSessionEntity);
+		Integer facultyId = loggedInUser.getUserId();
+		List<BatchSessionEntity> batchSessions = batchSessionRepository.findByFacultyId(facultyId);
 
-        return "redirect:/faculty/faculty-dashboard";
-    }
+		model.addAttribute("batchSessions", batchSessions);
+		return "Faculty/ListBatchSession";
+	}
+
 }
-

@@ -74,12 +74,6 @@
                                         <input type="number" class="form-control" id="sessionDurationMinutes" name="sessionDurationMinutes" required>
                                     </div>
 
-                                    <!-- Reporting DateTime -->
-                                    <div class="form-group">
-                                        <label for="reportingDateTime">Reporting Date & Time</label>
-                                        <input type="datetime-local" class="form-control" id="reportingDateTime" name="reportingDateTime">
-                                    </div>
-
                                     <!-- Topic -->
                                     <div class="form-group">
                                         <label for="topic">Topic</label>
@@ -90,48 +84,6 @@
                                     <div class="form-group">
                                         <label for="notes">Notes</label>
                                         <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
-                                    </div>
-
-                                    <!-- Attendance Fields (optional now) -->
-                                    <div class="form-group">
-                                        <label for="presentOffline">Present Offline</label>
-                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="presentOnline">Present Online</label>
-                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="absent">Absent</label>
-                                        <input type="number" class="form-control" id="absent" name="absent">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="late">Late</label>
-                                        <input type="number" class="form-control" id="late" name="late">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="excuse">Excuse</label>
-                                        <input type="number" class="form-control" id="excuse" name="excuse">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="cancel">Cancel</label>
-                                        <input type="number" class="form-control" id="cancel" name="cancel">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="na">N/A</label>
-                                        <input type="number" class="form-control" id="na" name="na">
-                                    </div>
-
-                                    <!-- Total Students (optional) -->
-                                    <div class="form-group">
-                                        <label for="totalStudent">Total Students</label>
-                                        <input type="number" class="form-control" id="totalStudent" name="totalStudent">
                                     </div>
 
                                     <!-- Status -->

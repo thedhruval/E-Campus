@@ -1,5 +1,6 @@
 package com.grownited.controller.Faculty;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import com.grownited.repository.AttendanceRepository;
 import com.grownited.repository.BatchRepository;
 import com.grownited.repository.BatchSessionRepository;
 import com.grownited.repository.BatchStudentRepository;
+import com.grownited.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -38,6 +40,9 @@ public class FacultyAttendanceController {
 
 	@Autowired
 	private AttendanceRepository attendanceRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	// Step 1: Select Batch
 	@GetMapping("/selectBatchForAttendance")
@@ -140,5 +145,27 @@ public class FacultyAttendanceController {
 		batchSessionRepository.save(currentSession);
 
 		return "redirect:/faculty/faculty-dashboard";
+	}
+	
+	@GetMapping("/viewAttendance")
+	public String getlistAttendance(Integer batchSessionId, Model model) {
+		BatchSessionEntity session = batchSessionRepository.findById(batchSessionId).orElse(null);
+		if (session == null) {
+			return "redirect:/faculty/faculty-dashboard";
+		}
+
+		List<AttendanceEntity> attendanceList = attendanceRepository.findByBatchSessionId(batchSessionId);
+
+		// Fetch user names for each studentId
+		Map<Integer, UserEntity> userMap = new HashMap<>();
+		for (AttendanceEntity att : attendanceList) {
+			userMap.put(att.getStudentId(), userRepository.findById(att.getStudentId()).orElse(null));
+		}
+
+		model.addAttribute("session", session);
+		model.addAttribute("attendanceList", attendanceList);
+		model.addAttribute("userMap", userMap);
+
+		return "Faculty/ListAttendance";
 	}
 }
