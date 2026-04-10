@@ -11,5 +11,6 @@ public interface ExamRepository extends JpaRepository<ExamEntity, Long>{
 	
 	List<ExamEntity> findByBatchIdAndExamDateBefore(Long batchId, LocalDate date);
     List<ExamEntity> findByBatchIdAndExamDateAfter(Long batchId, LocalDate date);
+	List<ExamEntity> findByBatchId(Integer batchId);
 
 }

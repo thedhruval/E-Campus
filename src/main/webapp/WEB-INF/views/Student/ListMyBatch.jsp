@@ -42,12 +42,10 @@
                                 <!-- Attendance -->
                                 <a href="viewAttendance?batchId=${batch.batchId}" class="btn btn-sm btn-info">Attendance</a>
                                 <!-- Upcoming Sessions -->
-                                <a href="viewUpcomingSessions?batchId=${batch.batchId}" class="btn btn-sm btn-primary">Upcoming Sessions</a>
+                                <a href="viewSessions?batchId=${batch.batchId}" class="btn btn-sm btn-primary">View Sessions</a>
                                 <!-- Exams Done -->
-                                <a href="viewExamsDone?batchId=${batch.batchId}" class="btn btn-sm btn-success">Exams Done</a>
-                                <!-- Upcoming Exams -->
-                                <a href="viewExamsUpcoming?batchId=${batch.batchId}" class="btn btn-sm btn-warning">Upcoming Exams</a>
-                            </td>
+                                <a href="viewExams?batchId=${batch.batchId}" class="btn btn-sm btn-success">View Exams</a>
+                                </td>
                         </tr>
                     </c:forEach>
                     </tbody>

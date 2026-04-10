@@ -1,6 +1,5 @@
 package com.grownited.controller.Student;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +19,11 @@ public class StudentExamController {
 	@Autowired
 	ExamRepository examRepository;
 	
-	// View Exams Done
-	@GetMapping("/viewExamsDone")
-	public String viewExamsDone(@RequestParam("batchId") Long batchId, Model model) {
-	    LocalDate today = LocalDate.now();
-	    List<ExamEntity> examsDone = examRepository.findByBatchIdAndExamDateBefore(batchId, today);
-	    model.addAttribute("examsDone", examsDone);
-	    return "student-examsDone";
+	@GetMapping("/viewExams")
+	public String viewExams(@RequestParam("batchId") Integer batchId, Model model) {
+	    List<ExamEntity> exams = examRepository.findByBatchId(batchId);
+	    model.addAttribute("exams", exams);
+	    return "Student/ListExam";
 	}
-
-	// View Upcoming Exams
-	@GetMapping("/viewExamsUpcoming")
-	public String viewExamsUpcoming(@RequestParam("batchId") Long batchId, Model model) {
-	    LocalDate today = LocalDate.now();
-	    List<ExamEntity> examsUpcoming = examRepository.findByBatchIdAndExamDateAfter(batchId, today);
-	    model.addAttribute("examsUpcoming", examsUpcoming);
-	    return "student-examsUpcoming";
-	}
-
 
 }

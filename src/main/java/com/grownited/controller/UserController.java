@@ -102,6 +102,7 @@ public class UserController {
 	public String deleteUser(Integer userId) {
 
 		userRepository.deleteById(userId);
+		userDetailRepository.deleteByUserId(userId);
 		return "redirect:/listUser";
 	}
 	

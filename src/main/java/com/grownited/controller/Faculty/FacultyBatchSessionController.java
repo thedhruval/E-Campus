@@ -49,7 +49,7 @@ public class FacultyBatchSessionController {
 
 		batchSessionRepository.save(batchSessionEntity);
 
-		return "redirect:/faculty/faculty-dashboard";
+		return "redirect:/faculty/listBatchSession";
 	}
 
 	@GetMapping("/listBatchSession")

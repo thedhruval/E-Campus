@@ -1,18 +1,14 @@
-package com.grownited.controller.Faculty;
+package com.grownited.controller;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
@@ -24,8 +20,7 @@ import com.grownited.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/faculty")
-public class FacultyUserController {
+public class MyselfController {
 	
 	@Autowired
 	UserRepository userRepository;
@@ -34,52 +29,7 @@ public class FacultyUserController {
 	UserDetailRepository userDetailRepository;
 	
 	@Autowired
-	PasswordEncoder passwordEncoder;
-	
-	@Autowired
 	Cloudinary cloudinary;
-	
-	@GetMapping("/newStudent")
-	public String facultyNewUser(Model model) {
-		List<UserEntity> students = userRepository.findByRole("STUDENT");
-		model.addAttribute("students", students);
-		return "Faculty/FacultyNewUser";
-	}
-	
-	@GetMapping("/listStudent")
-	public String facultyListUser(Model model) {
-		
-		List<UserEntity> students = userRepository.findByRole("STUDENT");
-		model.addAttribute("students", students);
-		return "Faculty/FacultyListUser";
-	}
-	
-	@PostMapping("/saveStudent")
-	public String facultySaveUser(UserEntity userEntity, UserDetailEntity userDetailEntity, MultipartFile profilePic) {
-
-		userEntity.setActive(true);
-		userEntity.setCreatedAt(LocalDate.now());
-
-		String encodedPassword = passwordEncoder.encode(userEntity.getPassword());
-		userEntity.setPassword(encodedPassword);
-
-		try {
-			if (profilePic != null && !profilePic.isEmpty()) {
-				Map map = cloudinary.uploader().upload(profilePic.getBytes(), null);
-				String profilePicURL = map.get("secure_url").toString();
-				userEntity.setProfilePicURL(profilePicURL);
-				}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		userRepository.save(userEntity);
-		userDetailEntity.setUserId(userEntity.getUserId());
-		userDetailRepository.save(userDetailEntity);
-
-		return "redirect:/faculty/listStudent";
-	}
 	
 	@GetMapping("/viewMyProfile")
 	public String ViewMyProfile(HttpSession session, Model model) {
@@ -89,10 +39,10 @@ public class FacultyUserController {
 		model.addAttribute("user",user);
 		model.addAttribute("userDetail", userDetail);
 		
-		return("Faculty/ViewUser");
+		return("ViewMyself");
 	}
 	
-	@GetMapping("/deleteUser")
+	@GetMapping("/deleteMyself")
 	public String DeleteMyProfile(HttpSession session, Model model) {
 		
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -105,7 +55,7 @@ public class FacultyUserController {
 		return("Signup");
 	}
 	
-	@GetMapping("/editUser")
+	@GetMapping("/editMyself")
 	public String editUser(HttpSession session, Model model) {
 		UserEntity userfromsession = (UserEntity) session.getAttribute("user");
 	    Optional<UserEntity> useropt = userRepository.findById(userfromsession.getUserId());
@@ -114,15 +64,15 @@ public class FacultyUserController {
 	    	model.addAttribute("user", user);
 	    Optional<UserDetailEntity> userDetail = userDetailRepository.findByUserId(user.getUserId());
 	    userDetail.ifPresent(detail -> model.addAttribute("userDetail", detail));
-	    return "Faculty/EditUser";
+	    return "EditMyself";
 	    }
 
 	    else {
-	        return "redirect:/faculty/viewMyProfile"; // fallback if not found
+	        return "redirect:/viewMyProfile"; // fallback if not found
 	    }
 	}
 
-	@PostMapping("/updateUser")
+	@PostMapping("/updateMyself")
 	public String updateUser(HttpSession session, UserEntity newUserEntity, UserDetailEntity newUserDetailEntity) {
 	    
 		UserEntity User = (UserEntity) session.getAttribute("user");
@@ -145,15 +95,15 @@ public class FacultyUserController {
 		User.setGender(newUserEntity.getGender());
 		User.setContactNum(newUserEntity.getContactNum());
 		
-	    return "redirect:/faculty/viewMyProfile";
+	    return "redirect:/viewMyProfile";
 	}
 	
-	@GetMapping("/editUserProfilePic")
+	@GetMapping("/editMyProfilePic")
 	public String editUserProfilePic() {
-		return "Faculty/EditUserProfilePic";
+		return "EditMyProfilePic";
 	}
 	
-	@PostMapping("updateUserProfilePic")
+	@PostMapping("updateMyProfilePic")
 	public String updateUserProfilePic(HttpSession session, MultipartFile profilePic) {
 		UserEntity userEntity = (UserEntity) session.getAttribute("user");
 		// file uploading
@@ -169,8 +119,9 @@ public class FacultyUserController {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		return "redirect:/faculty/viewMyProfile";
+		return "redirect:/viewMyProfile";
 	}
+
 
 
 }

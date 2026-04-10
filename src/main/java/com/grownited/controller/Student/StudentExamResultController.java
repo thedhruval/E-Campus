@@ -22,13 +22,12 @@ public class StudentExamResultController {
 	@Autowired
 	ExamResultRepository examResultRepository;
 	
-	@GetMapping("/viewExamResult")
-    public String viewExamResult(@RequestParam("examId") Long examId,
-                                 HttpSession session, Model model) {
+	@GetMapping("/listExamResult")
+    public String viewExamResult(HttpSession session, Model model) {
         UserEntity user = (UserEntity) session.getAttribute("user");
-        List<ExamResultEntity> results = examResultRepository.findByExamIdAndStudentId(examId, user.getUserId().longValue());
-        model.addAttribute("examResults", results);
-        return "student-examResult";
+        List<ExamResultEntity> examResults = examResultRepository.findByStudentId(user.getUserId());
+        model.addAttribute("examResults", examResults);
+        return "Student/ListExamResult";
     }
 
 }

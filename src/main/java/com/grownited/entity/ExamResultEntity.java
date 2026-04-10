@@ -25,6 +25,10 @@ public class ExamResultEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studentId", referencedColumnName = "userId", insertable = false, updatable = false)
     private UserEntity student;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "examId", referencedColumnName = "examId", insertable = false, updatable = false)
+    private ExamEntity exam;
 
     // Getters and Setters
     public Long getExamResultId() {
@@ -73,5 +77,13 @@ public class ExamResultEntity {
 	public void setStudent(UserEntity student) {
 		this.student = student;
 	}
+	public ExamEntity getExam() {
+		return exam;
+	}
+	public void setExam(ExamEntity exam) {
+		this.exam = exam;
+	}
+	
+	
     
 }

@@ -19,11 +19,11 @@ public class StudentBatchSessionController {
 	@Autowired
 	BatchSessionRepository batchSessionRepository;
 	
-	 @GetMapping("/viewUpcomingSessions")
-	    public String viewUpcomingSessions(@RequestParam("batchId") Integer batchId, Model model) {
-	        List<BatchSessionEntity> upcomingSessions = batchSessionRepository.findByBatchIdAndStatus(batchId, "UPCOMING");
-	        model.addAttribute("upcomingSessions", upcomingSessions);
-	        return "Student/UpcomingSessions";
+	 @GetMapping("/viewSessions")
+	    public String viewSessions(@RequestParam("batchId") Integer batchId, Model model) {
+	        List<BatchSessionEntity> batchSessions = batchSessionRepository.findByBatchId(batchId);
+	        model.addAttribute("batchSessions", batchSessions);
+	        return "Student/ListBatchSession";
 	    }
 
 }

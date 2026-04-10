@@ -42,5 +42,31 @@
                 </ul>
             </div>
         </li>
+        
+        <!-- Exam Result -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#examResultMenu"
+			aria-expanded="false" aria-controls="examResultMenu"> <i
+				class="mdi mdi-chart-bar menu-icon"></i> <span class="menu-title">Exam
+					Result</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="examResultMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link" href="listExamResult">View My Exam Results</a></li>
+				</ul>
+			</div></li>
+			
+			<!-- User -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#userMenu" aria-expanded="false"
+			aria-controls="userMenu"> <i class="mdi mdi-account-group menu-icon"></i>
+				<span class="menu-title">Profile</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="userMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="viewMyProfile">View My Profile</a></li>
+				</ul>
+			</div></li>
     </ul>
 </nav>

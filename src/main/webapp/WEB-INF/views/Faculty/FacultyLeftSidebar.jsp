@@ -116,6 +116,19 @@
 							Exam Result</a></li>
 				</ul>
 			</div></li>
+			
+			<!-- User -->
+		<li class="nav-item"><a class="nav-link"
+			data-bs-toggle="collapse" href="#myMenu" aria-expanded="false"
+			aria-controls="myMenu"> <i class="mdi mdi-account-group menu-icon"></i>
+				<span class="menu-title">Profile</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="myMenu">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="viewMyProfile">View My Profile</a></li>
+				</ul>
+			</div></li>
 
 	</ul>
 </nav>

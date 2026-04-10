@@ -44,7 +44,7 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<a href="/student/student-dashboard" class="btn btn-secondary">Cancel</a>
+					<a href="listMyBatch" class="btn btn-secondary">Cancel</a>
 				</div>
 
 				<!-- Footer -->

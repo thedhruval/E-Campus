@@ -12,4 +12,6 @@ import com.grownited.entity.UserDetailEntity;
 public interface UserDetailRepository extends JpaRepository<UserDetailEntity, Integer>{
 	
 	Optional<UserDetailEntity> findByUserId(Integer userId);
+	
+	void deleteByUserId(Integer userId);
 }
