@@ -114,6 +114,7 @@
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link" href="newExamResult">New
 							Exam Result</a></li>
+					 <li class="nav-item"><a class="nav-link" href="listExamResult">List Exam Result</a></li>
 				</ul>
 			</div></li>
 			

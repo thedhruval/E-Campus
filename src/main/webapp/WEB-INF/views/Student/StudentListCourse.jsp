@@ -84,7 +84,7 @@
 										</table>
 									</div>
 								</div>
-								<a href="faculty-dashboard" class="btn btn-secondary">Cancel</a>
+								<a href="student-dashboard" class="btn btn-secondary">Cancel</a>
 							</div>
 						</div>
 					</div>

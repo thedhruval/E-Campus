@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Student Dashboard - Exam Results</title>
+    <title>Faculty Dashboard - Exam Results</title>
     <!-- base:css -->
     <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
@@ -25,11 +25,11 @@
 <div class="container-scroller d-flex">
 
     <!-- Sidebar -->
-    <jsp:include page="StudentLeftSidebar.jsp"></jsp:include>
+    <jsp:include page="FacultyLeftSidebar.jsp"></jsp:include>
 
     <div class="container-fluid page-body-wrapper">
         <!-- Header -->
-        <jsp:include page="StudentHeader.jsp"></jsp:include>
+        <jsp:include page="FacultyHeader.jsp"></jsp:include>
 
         <div class="main-panel">
             <div class="content-wrapper">
@@ -106,7 +106,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <a href="student-dashboard" class="btn btn-secondary">Cancel</a>
+                            <a href="faculty-dashboard" class="btn btn-secondary">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@
             <!-- content-wrapper ends -->
 
             <!-- Footer -->
-            <jsp:include page="StudentFooter.jsp"></jsp:include>
+            <jsp:include page="FacultyFooter.jsp"></jsp:include>
         </div>
     </div>
 </div>

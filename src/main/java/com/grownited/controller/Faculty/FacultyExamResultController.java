@@ -45,5 +45,12 @@ public class FacultyExamResultController {
 	        examResultRepository.save(examResultEntity);
 	        return "redirect:/faculty/newExamResult";
 	    }
+	 
+	 @GetMapping("/listExamResult")
+	    public String listExamResult(Model model) {
+	        List<ExamResultEntity> examResults = examResultRepository.findAll();
+	        model.addAttribute("examResults", examResults);
+	        return "Faculty/ListExamResult";
+	    }
 
 }
