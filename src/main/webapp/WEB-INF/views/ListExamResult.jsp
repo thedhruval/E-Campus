@@ -56,6 +56,7 @@
                                                 <th>Obtain Marks</th>
                                                 <th>Percentage</th>
                                                 <th>Result Status</th>
+                                                <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -99,6 +100,9 @@
                                                                 <span class="badge bg-secondary">ABSENT</span>
                                                             </c:otherwise>
                                                         </c:choose>
+                                                    </td>
+                                                    <td>
+                                                    <a href="editExamResult?examResultId=${result.examResultId}" class="btn btn-warning btn-sm">Edit</a>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
