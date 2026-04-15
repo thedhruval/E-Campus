@@ -82,13 +82,8 @@
 																</c:otherwise>
 															</c:choose></td>
 														<td><a href="viewUser?userId=${user.userId}"
-															class="btn btn-info btn-sm">View</a> <a
-															href="editUser?userId=${user.userId}"
-															class="btn btn-warning btn-sm">Edit</a> <a
-															href="deleteUser?userId=${user.userId}"
-															class="btn btn-danger btn-sm"
-															onclick="return confirm('Are you sure you want to delete this user?');">
-																Delete </a></td>
+															class="btn btn-info btn-sm">View</a>
+															</td>
 													</tr>
 												</c:forEach>
 											</tbody>

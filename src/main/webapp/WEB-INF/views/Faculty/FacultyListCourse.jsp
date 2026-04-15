@@ -48,7 +48,7 @@
 													<th>Total Seats</th>
 													<th>Academic Cycle</th>
 													<th>Paid Seats</th>
-													<th>Development Cost</th>
+													<th>Actions</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -66,7 +66,9 @@
 														<td>${course.totalSeats}</td>
 														<td>${course.academicCycle}</td>
 														<td>${course.paidSeats}</td>
-														<td>${course.developmentCost}</td>
+														<td><a
+															href="listSubjectForCourse?courseId=${course.courseId}"
+															class="btn btn-info btn-sm">View Subjects</a></td>
 														</tr>
 												</c:forEach>
 											</tbody>

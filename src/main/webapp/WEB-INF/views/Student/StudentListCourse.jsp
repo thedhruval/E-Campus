@@ -68,10 +68,14 @@
 														<td>${course.academicCycle}</td>
 														<td>${course.paidSeats}</td>
 														<td>${course.amountPerStudent}</td>
-														<td><c:choose>
+														<td>
+														<a
+															href="listSubjectForCourse?courseId=${course.courseId}"
+															class="btn btn-info btn-sm">View Subjects</a>
+														<c:choose>
 														<c:when test="${course.active}">
 																	<a href="/charge?courseId=${course.courseId}"
-															class="btn btn-info btn-sm">Pay and Enroll</a>
+															class="btn btn-primary btn-sm">Pay and Enroll</a>
 																</c:when>
 																<c:otherwise>
 																	<span class="badge bg-danger">Course Inactive</span>

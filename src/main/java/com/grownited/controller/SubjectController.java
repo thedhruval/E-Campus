@@ -71,6 +71,13 @@ public class SubjectController {
 	    }
 	    return "redirect:/listSubject";
 	}
+	
+	@GetMapping("listSubjectForCourse")
+	public String listSubjectForCourse(Integer courseId, Model model) {
+		List<SubjectEntity> subjectList = subjectRepository.findByCourseId(courseId);
+		model.addAttribute("subjectList",subjectList);
+		return"ListSubjectForCourse";
+	}
 
 
 
