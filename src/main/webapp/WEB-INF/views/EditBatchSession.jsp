@@ -71,12 +71,7 @@
                                                name="sessionDurationMinutes" value="${batchSession.sessionDurationMinutes}" required>
                                     </div>
 
-                                    <!-- Reporting DateTime -->
-                                    <div class="form-group">
-                                        <label for="reportingDateTime">Reporting Date & Time</label>
-                                        <input type="datetime-local" class="form-control" id="reportingDateTime" 
-                                               name="reportingDateTime" value="${batchSession.reportingDateTime}" required>
-                                    </div>
+                                    
 
                                     <!-- Topic -->
                                     <div class="form-group">
@@ -91,28 +86,7 @@
                                         <textarea class="form-control" id="notes" name="notes" rows="3">${batchSession.notes}</textarea>
                                     </div>
 
-                                    <!-- Attendance -->
-                                    <div class="form-group"><label for="presentOffline">Present Offline</label>
-                                        <input type="number" class="form-control" id="presentOffline" name="presentOffline" value="${batchSession.presentOffline}">
-                                    </div>
-                                    <div class="form-group"><label for="presentOnline">Present Online</label>
-                                        <input type="number" class="form-control" id="presentOnline" name="presentOnline" value="${batchSession.presentOnline}">
-                                    </div>
-                                    <div class="form-group"><label for="absent">Absent</label>
-                                        <input type="number" class="form-control" id="absent" name="absent" value="${batchSession.absent}">
-                                    </div>
-                                    <div class="form-group"><label for="late">Late</label>
-                                        <input type="number" class="form-control" id="late" name="late" value="${batchSession.late}">
-                                    </div>
-                                    <div class="form-group"><label for="excuse">Excuse</label>
-                                        <input type="number" class="form-control" id="excuse" name="excuse" value="${batchSession.excuse}">
-                                    </div>
-                                    <div class="form-group"><label for="cancel">Cancel</label>
-                                        <input type="number" class="form-control" id="cancel" name="cancel" value="${batchSession.cancel}">
-                                    </div>
-                                    <div class="form-group"><label for="na">N/A</label>
-                                        <input type="number" class="form-control" id="na" name="na" value="${batchSession.na}">
-                                    </div>
+                                    
                                     <div class="form-group"><label for="totalStudent">Total Students</label>
                                         <input type="number" class="form-control" id="totalStudent" name="totalStudent" value="${batchSession.totalStudent}">
                                     </div>

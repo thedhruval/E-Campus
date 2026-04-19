@@ -44,9 +44,10 @@
                                     class="table table-striped table-hover table-bordered align-middle">
                                         <thead class="table-dark">
                                             <tr>
-                                                <th>Exam Id</th>
+                                                
                                                 <th>Exam Date</th>
                                                 <th>Exam Subject</th>
+                                                <th>Course</th>
                                                 <th>Batch</th>
                                                 <th>Exam Title</th>
                                                 <th>Exam Description</th>
@@ -62,9 +63,10 @@
                                         <tbody>
                                             <c:forEach var="result" items="${examResults}">
                                                 <tr>
-                                                    <td>${result.examId}</td>
+                                                    
                                                     <td>${result.exam.examDate}</td>
                                                     <td>${result.exam.subject.subjectName}</td>
+                                                    <td>${result.exam.course.courseName}</td>
                                                     <td>${result.exam.batch.batchName}</td>
                                                     <td>${result.exam.examTitle}</td>
                                                     <td>${result.exam.examDescription}</td>
